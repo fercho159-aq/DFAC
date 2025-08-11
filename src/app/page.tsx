@@ -61,15 +61,21 @@ const beneficios = [
 const heroBanners = [
   {
     title: "Puntales Metálicos Extensibles de Alta Resistencia",
-    subtitle: "Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción."
+    subtitle: "Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción.",
+    imageUrl: "https://placehold.co/1920x1080.png",
+    dataAiHint: "construction site"
   },
   {
     title: "Innovación y Calidad para la Construcción Moderna",
-    subtitle: "Nuestros productos están diseñados para cumplir con los más altos estándares de la industria."
+    subtitle: "Nuestros productos están diseñados para cumplir con los más altos estándares de la industria.",
+    imageUrl: "https://placehold.co/1920x1080.png",
+    dataAiHint: "building architecture"
   },
   {
     title: "Asesoramiento Experto a tu Disposición",
-    subtitle: "Más de 20 años de experiencia nos respaldan para ofrecerte la mejor solución."
+    subtitle: "Más de 20 años de experiencia nos respaldan para ofrecerte la mejor solución.",
+    imageUrl: "https://placehold.co/1920x1080.png",
+    dataAiHint: "construction plans"
   }
 ]
 
@@ -128,37 +134,47 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section id="inicio" className="relative text-center py-20 md:py-32 px-4 bg-secondary/30 overflow-hidden">
-            <div className="container mx-auto">
-              <Carousel
-                plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
-                opts={{ loop: true }}
-                className="w-full"
-              >
-                <CarouselContent>
-                  {heroBanners.map((banner, index) => (
-                    <CarouselItem key={index}>
-                      <div className="flex flex-col items-center justify-center">
-                         <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tighter">
+        <section id="inicio" className="relative text-center text-white bg-black">
+          <Carousel
+            plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+            opts={{ loop: true }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {heroBanners.map((banner, index) => (
+                <CarouselItem key={index}>
+                  <div className="relative flex flex-col items-center justify-center py-40 md:py-56 h-[60vh] md:h-auto">
+                    <Image
+                        src={banner.imageUrl}
+                        alt={banner.title}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={banner.dataAiHint}
+                        priority={index === 0}
+                    />
+                    <div className="absolute inset-0 bg-black/60 z-10"></div>
+                     <div className="relative z-20 container mx-auto px-4">
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
                             {banner.title}
                         </h1>
-                        <p className="mt-4 md:text-xl text-muted-foreground max-w-3xl mx-auto">
+                        <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
                             {banner.subtitle}
                         </p>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex -left-4" />
-                <CarouselNext className="hidden md:flex -right-4" />
-              </Carousel>
-                
-                <div className="mt-8 flex justify-center gap-4">
-                    <Button size="lg" onClick={() => setIsModalOpen(true)}>
-                        <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
-                    </Button>
-                </div>
+                        <div className="mt-8 flex justify-center gap-4">
+                            <Button size="lg" onClick={() => setIsModalOpen(true)}>
+                                <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
+                            </Button>
+                        </div>
+                     </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className='absolute bottom-8 left-1/2 -translate-x-1/2 z-20'>
+              <CarouselPrevious className="static -translate-y-0" />
+              <CarouselNext className="static -translate-y-0" />
             </div>
+          </Carousel>
         </section>
 
         <section id="nosotros" className="py-16 md:py-24 px-4">
