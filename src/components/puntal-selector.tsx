@@ -14,6 +14,13 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
   ArrowDownToLine,
   ArrowUpToLine,
   Circle,
@@ -156,17 +163,39 @@ export default function PuntalSelector() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-              <Slider
-                id="model-slider"
-                min={0}
-                max={puntalesData.length - 1}
-                step={1}
-                value={[modelIndex]}
-                onValueChange={(value) => setModelIndex(value[0])}
-                className="mt-3"
-              />
-              <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 text-xs text-muted-foreground mt-2 px-1">
-                {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
+              {/* Mobile: Select component */}
+              <div className="lg:hidden">
+                <Select
+                  value={String(modelIndex)}
+                  onValueChange={(value) => setModelIndex(Number(value))}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Selecciona un modelo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {puntalesData.map((puntal, index) => (
+                      <SelectItem key={puntal.id} value={String(index)}>
+                        Modelo {puntal.model}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Desktop: Slider component */}
+              <div className="hidden lg:block">
+                <Slider
+                  id="model-slider"
+                  min={0}
+                  max={puntalesData.length - 1}
+                  step={1}
+                  value={[modelIndex]}
+                  onValueChange={(value) => setModelIndex(value[0])}
+                  className="mt-3"
+                />
+                <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 text-xs text-muted-foreground mt-2 px-1">
+                  {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
+                </div>
               </div>
           </CardContent>
         </Card>
