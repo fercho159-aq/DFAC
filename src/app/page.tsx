@@ -165,12 +165,17 @@ export default function Home() {
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-in fade-in-0 slide-in-from-left-12 duration-500">
               <h2 className="text-3xl font-bold text-primary mb-4">Sobre Nosotros</h2>
-              <p className="text-muted-foreground mb-4">
-                Con más de 20 años de experiencia en el sector de la construcción, en DFAC nos especializamos en proveer accesorios para cimbras de la más alta calidad. Nuestra misión es garantizar la seguridad y eficiencia en cada obra a través de productos innovadores y un servicio excepcional.
-              </p>
-              <p className="text-muted-foreground">
-                Nuestros valores son la <span className="font-bold text-primary/90">seguridad</span>, la <span className="font-bold text-primary/90">calidad</span> y la <span className="font-bold text-primary/90">innovación</span>, pilares que nos han consolidado como líderes en el mercado.
-              </p>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  DFAC fue fundado el 16 de mayo del 2013, en un pequeño local donde solo los fundadores éramos los encargados de entregar el material y llevar a cabo las ventas. Desde el principio se supo que ofrecer un servicio rápido y eficiente era crucial para la satisfacción de los clientes.
+                </p>
+                <p>
+                  Gracias a esta filosofía la empresa empezó a crecer y a ganarse una sólida reputación, basada en la excelencia del servicio. Retribuyendo al crecimiento de la empresa se adquirió maquinaria especializada para la fabricación de moños y cuñas para cimbra, siendo este nuestro producto estrella, esto hizo que nos diera el impulso necesario para aumentar más la velocidad de entrega y la mejora de la calidad de nuestros productos.
+                </p>
+                <p>
+                  Hoy, seguimos fieles a nuestros valores iniciales y agradecemos a todos nuestros clientes por confiar en nosotros y recomendarnos.
+                </p>
+              </div>
             </div>
             <div className="animate-in fade-in-0 slide-in-from-right-12 duration-500 overflow-hidden rounded-lg shadow-xl">
                <video
@@ -326,5 +331,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
