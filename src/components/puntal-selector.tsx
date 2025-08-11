@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { puntalesData, type Puntal } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Table,
   TableBody,
@@ -22,6 +23,9 @@ import {
   Weight,
   Layers,
   Ruler,
+  SlidersHorizontal,
+  Info,
+  ListTree,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -64,23 +68,29 @@ export default function PuntalSelector() {
   const currentModel: Puntal = puntalesData[modelIndex];
 
   useEffect(() => {
+    // Reset height to the new model's minimum height to avoid invalid states
     setCurrentHeight(currentModel.minHeight);
   }, [modelIndex, currentModel.minHeight]);
 
   useEffect(() => {
     const calculateLoad = (model: Puntal, height: number): number => {
+      // The load table is assumed to be sorted by height in ascending order.
+      // We find the first entry where the height is greater than or equal to the current height.
       const sortedTable = [...model.loadTable].sort((a, b) => a.height - b.height);
       for (const entry of sortedTable) {
         if (height <= entry.height) {
           return entry.load;
         }
       }
+      // If no entry is found (e.g., height is greater than all table entries),
+      // return the load of the last entry. This handles edge cases.
       return sortedTable[sortedTable.length - 1]?.load || 0;
     };
 
     const newLoad = calculateLoad(currentModel, currentHeight);
     if (newLoad !== maxLoad) {
       setMaxLoad(newLoad);
+      // Change the key to re-trigger the animation
       setHighlightKey(prev => prev + 1);
     }
   }, [currentHeight, currentModel, maxLoad]);
@@ -97,7 +107,7 @@ export default function PuntalSelector() {
       <div
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
       >
-        <div className="flex flex-col gap-6 sticky top-28">
+        <div className="flex flex-col gap-6 lg:sticky top-28">
           <Card className="overflow-hidden shadow-xl border-2 border-border/60 animate-in fade-in duration-500" key={currentModel.id}>
              <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
                 Modelo: {currentModel.model}
@@ -116,68 +126,19 @@ export default function PuntalSelector() {
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <Ruler className="w-6 h-6 text-primary" />
-                <span>Especificaciones</span>
+                <span>Especificaciones Clave</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                <SpecItem icon={ArrowDownToLine} label="Altura Mínima" value={`${currentModel.minHeight} cm`} />
                <SpecItem icon={ArrowUpToLine} label="Altura Máxima" value={`${currentModel.maxHeight} cm`} />
                <SpecItem icon={Circle} label="Diámetro de Tubos" value={currentModel.tubeDiameter} />
+               <SpecItem icon={BadgeCheck} label="Norma" value={currentModel.productionNorms} />
             </CardContent>
           </Card>
         </div>
 
         <div className="flex flex-col gap-8">
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-xl font-bold tracking-tight text-primary">
-                1. Selecciona el Modelo
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Slider
-                  id="model-slider"
-                  min={0}
-                  max={puntalesData.length - 1}
-                  step={1}
-                  value={[modelIndex]}
-                  onValueChange={(value) => setModelIndex(value[0])}
-                  className="mt-3"
-                />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2 px-1">
-                  {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
-                </div>
-            </CardContent>
-          </Card>
-
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-xl font-bold tracking-tight text-primary">
-                2. Ajusta la Altura
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-                <div className="flex justify-between items-baseline mb-3">
-                  <label htmlFor="height-slider" className="text-base font-medium">Altura de trabajo:</label>
-                  <p className="text-2xl font-bold text-primary tabular-nums">
-                    {currentHeight.toFixed(0)} <span className="text-sm font-normal">cm</span>
-                  </p>
-                </div>
-                <Slider
-                  id="height-slider"
-                  min={currentModel.minHeight}
-                  max={currentModel.maxHeight}
-                  step={1}
-                  value={[currentHeight]}
-                  onValueChange={(value) => setCurrentHeight(value[0])}
-                />
-                 <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                  <span>{currentModel.minHeight} cm (mín)</span>
-                  <span>{currentModel.maxHeight} cm (máx)</span>
-                </div>
-            </CardContent>
-          </Card>
-          
           <Card className="shadow-lg bg-primary/5">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl">
@@ -192,41 +153,101 @@ export default function PuntalSelector() {
               <p className="text-muted-foreground mt-1">kg a {currentHeight.toFixed(0)} cm de altura</p>
             </CardContent>
           </Card>
-          
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle>Tabla de Cargas de {currentModel.model}</CardTitle>
-            </CardHeader>
-            <CardContent>
-               <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[50%]">Altura (cm)</TableHead>
-                    <TableHead className="text-right">Carga Máxima (kg)</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {currentModel.loadTable.map((entry) => (
-                    <TableRow key={entry.height} className={cn(currentHeight <= entry.height && maxLoad === entry.load ? "bg-primary/10 font-bold" : "")}>
-                      <TableCell>Hasta {entry.height}</TableCell>
-                      <TableCell className="text-right">{entry.load.toLocaleString('es-ES')}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-          
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle>Características del Producto</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-                {productFeatures.map((feature, index) => (
-                    <SpecItem key={index} icon={feature.icon} label={feature.label} value={feature.value} />
-                ))}
-            </CardContent>
-          </Card>
+
+          <Tabs defaultValue="controls" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="controls"><SlidersHorizontal className="mr-2" />Controles</TabsTrigger>
+              <TabsTrigger value="loads"><ListTree className="mr-2"/>Tabla de Cargas</TabsTrigger>
+              <TabsTrigger value="features"><Info className="mr-2"/>Detalles</TabsTrigger>
+            </TabsList>
+            <TabsContent value="controls">
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold tracking-tight text-primary">
+                    1. Selecciona el Modelo
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Slider
+                      id="model-slider"
+                      min={0}
+                      max={puntalesData.length - 1}
+                      step={1}
+                      value={[modelIndex]}
+                      onValueChange={(value) => setModelIndex(value[0])}
+                      className="mt-3"
+                    />
+                    <div className="flex justify-between text-xs text-muted-foreground mt-2 px-1">
+                      {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
+                    </div>
+                </CardContent>
+              </Card>
+              <Card className="shadow-lg mt-8">
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold tracking-tight text-primary">
+                    2. Ajusta la Altura
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex justify-between items-baseline mb-3">
+                      <label htmlFor="height-slider" className="text-base font-medium">Altura de trabajo:</label>
+                      <p className="text-2xl font-bold text-primary tabular-nums">
+                        {currentHeight.toFixed(0)} <span className="text-sm font-normal">cm</span>
+                      </p>
+                    </div>
+                    <Slider
+                      id="height-slider"
+                      min={currentModel.minHeight}
+                      max={currentModel.maxHeight}
+                      step={1}
+                      value={[currentHeight]}
+                      onValueChange={(value) => setCurrentHeight(value[0])}
+                    />
+                     <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                      <span>{currentModel.minHeight} cm (mín)</span>
+                      <span>{currentModel.maxHeight} cm (máx)</span>
+                    </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="loads">
+               <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle>Tabla de Cargas de {currentModel.model}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                   <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-[50%]">Altura (cm)</TableHead>
+                        <TableHead className="text-right">Carga Máxima (kg)</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {currentModel.loadTable.map((entry) => (
+                        <TableRow key={entry.height} className={cn(currentHeight <= entry.height && maxLoad === entry.load ? "bg-primary/10 font-bold" : "")}>
+                          <TableCell>Hasta {entry.height}</TableCell>
+                          <TableCell className="text-right">{entry.load.toLocaleString('es-ES')}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="features">
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle>Características del Producto</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    {productFeatures.map((feature, index) => (
+                        <SpecItem key={index} icon={feature.icon} label={feature.label} value={feature.value} />
+                    ))}
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>
