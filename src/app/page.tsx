@@ -302,8 +302,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left items-start">
             <div className="md:col-span-1">
                <Image src="https://cimbrayaccesorios.com.mx/wp-content/uploads/2020/09/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto mx-auto md:mx-0" />
-              <p className="text-sm mt-4">Dirección de la Empresa, Ciudad, Estado, CP.</p>
-              <p className="text-sm">contacto@dfac.com.mx</p>
+              <p className="text-sm mt-4">Cuauhtémoc 105, San Pedro Iztacalco, Iztacalco, 08220 Ciudad de México, CDMX</p>
+              <p className="text-sm">ventas@cimbrayaccesorios.com.mx</p>
             </div>
             <div>
                <h3 className="font-bold text-lg mb-2">Enlaces Rápidos</h3>
@@ -380,3 +380,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
