@@ -4,7 +4,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { DfacLogo } from '@/components/icons';
 import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
@@ -93,7 +92,7 @@ export default function Home() {
       <header className="py-4 px-4 md:px-8 border-b border-border/40 bg-background/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
           <a href="#inicio" onClick={(e) => handleNavLinkClick(e, '#inicio')} className="flex items-center gap-3">
-            <DfacLogo className="h-8 w-auto text-primary" />
+            <Image src="https://cimbrayaccesorios.com.mx/wp-content/uploads/2020/09/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto" />
             <span className="sr-only">DFAC Accesorios para Cimbras</span>
           </a>
           <nav className="hidden lg:flex items-center gap-6">
@@ -278,10 +277,10 @@ export default function Home() {
 
       <footer className="bg-secondary text-secondary-foreground border-t">
         <div className="container mx-auto py-8 px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left items-center">
             <div>
-              <h3 className="font-bold text-lg mb-2">DFAC Accesorios para Cimbras</h3>
-              <p className="text-sm">Dirección de la Empresa, Ciudad, Estado, CP.</p>
+               <Image src="https://cimbrayaccesorios.com.mx/wp-content/uploads/2020/09/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto mx-auto md:mx-0" />
+              <p className="text-sm mt-4">Dirección de la Empresa, Ciudad, Estado, CP.</p>
               <p className="text-sm">contacto@dfac.com.mx</p>
             </div>
             <div>
