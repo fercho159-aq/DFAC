@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import {
@@ -17,6 +17,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import Autoplay from "embla-carousel-autoplay";
+import { FacebookIcon } from '@/components/icons';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
@@ -298,8 +299,8 @@ export default function Home() {
 
       <footer className="bg-secondary text-secondary-foreground border-t">
         <div className="container mx-auto py-8 px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left items-center">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left items-start">
+            <div className="md:col-span-1">
                <Image src="https://cimbrayaccesorios.com.mx/wp-content/uploads/2020/09/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto mx-auto md:mx-0" />
               <p className="text-sm mt-4">Dirección de la Empresa, Ciudad, Estado, CP.</p>
               <p className="text-sm">contacto@dfac.com.mx</p>
@@ -329,9 +330,18 @@ export default function Home() {
                   <Phone className="w-4 h-4" />
                   <span>(55) 5571-5084</span>
                 </a>
-                <a href="https://wa.me/5215549414017" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
-                  <MessageSquare className="w-4 h-4" />
-                  <span>WhatsApp</span>
+              </div>
+            </div>
+             <div>
+              <h3 className="font-bold text-lg mb-2">Síguenos</h3>
+              <div className="flex justify-center md:justify-start gap-4">
+                <a href="https://www.facebook.com/bandasdepvcymonosparacimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <FacebookIcon className="h-6 w-6" />
+                  <span className="sr-only">Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/dfac_cimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Instagram className="h-6 w-6" />
+                  <span className="sr-only">Instagram</span>
                 </a>
               </div>
             </div>
@@ -343,15 +353,30 @@ export default function Home() {
       </footer>
 
       <ContactModal isOpen={isModalOpen} onOpenChange={setIsModalOpen} />
-       <Button
-        onClick={() => setIsModalOpen(true)}
-        className={cn(
-          "fixed bottom-4 right-4 z-40 sm:hidden rounded-full shadow-lg p-4 h-16 w-16"
-        )}
-      >
-        <MessageSquare className="h-7 w-7" />
-        <span className="sr-only">Solicitar Cotización</span>
-      </Button>
+       <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-3 sm:hidden">
+        <Button
+          asChild
+          className={cn(
+            "rounded-full shadow-lg p-4 h-16 w-16 bg-green-500 hover:bg-green-600"
+          )}
+        >
+          <a href="https://wa.me/5215549414017?text=Hola,%20me%20gustaría%20solicitar%20una%20cotización." target="_blank" rel="noopener noreferrer">
+            <MessageSquare className="h-7 w-7 text-white" />
+            <span className="sr-only">Contactar por WhatsApp</span>
+          </a>
+        </Button>
+        <Button
+          asChild
+          className={cn(
+            "rounded-full shadow-lg p-4 h-16 w-16"
+          )}
+        >
+          <a href="tel:+525525989751">
+            <Phone className="h-7 w-7" />
+            <span className="sr-only">Llamar ahora</span>
+          </a>
+        </Button>
+      </div>
     </div>
   );
 }
