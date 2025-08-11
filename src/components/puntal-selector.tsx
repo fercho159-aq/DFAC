@@ -95,11 +95,10 @@ export default function PuntalSelector() {
   return (
     <div className="w-full">
       <div
-        key={currentModel.id}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start animate-in fade-in duration-500"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
       >
         <div className="flex flex-col gap-6 sticky top-28">
-          <Card className="overflow-hidden shadow-xl border-2 border-border/60">
+          <Card className="overflow-hidden shadow-xl border-2 border-border/60 animate-in fade-in duration-500" key={currentModel.id}>
              <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
                 Modelo: {currentModel.model}
             </div>
