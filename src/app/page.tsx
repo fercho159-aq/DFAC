@@ -173,15 +173,19 @@ export default function Home() {
                 Nuestros valores son la <span className="font-bold text-primary/90">seguridad</span>, la <span className="font-bold text-primary/90">calidad</span> y la <span className="font-bold text-primary/90">innovación</span>, pilares que nos han consolidado como líderes en el mercado.
               </p>
             </div>
-            <div className="animate-in fade-in-0 slide-in-from-right-12 duration-500">
-              <Image
-                src="https://placehold.co/600x400.png"
-                alt="Equipo de DFAC en obra"
-                data-ai-hint="construction team"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl w-full h-auto object-cover"
-              />
+            <div className="animate-in fade-in-0 slide-in-from-right-12 duration-500 overflow-hidden rounded-lg shadow-xl">
+               <video
+                  className="w-full h-auto object-cover"
+                  src="https://www.platz-maler.de/wp-content/video/malerbetrieb_platz_imagevideo.mp4"
+                  width={600}
+                  height={400}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  Tu navegador no soporta el tag de video.
+                </video>
             </div>
           </div>
         </section>
@@ -323,3 +327,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

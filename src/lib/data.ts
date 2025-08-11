@@ -21,7 +21,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p50-100",
     model: "50/100",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "construction prop",
     minHeight: 50,
     maxHeight: 100,
@@ -37,7 +37,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p70-120",
     model: "70/120",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/Horse.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "steel support",
     minHeight: 70,
     maxHeight: 120,
@@ -53,7 +53,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p100-170",
     model: "100/170",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/RobotExpressive.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "adjustable prop",
     minHeight: 100,
     maxHeight: 170,
@@ -69,7 +69,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p160-290",
     model: "160/290",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "formwork prop",
     minHeight: 160,
     maxHeight: 290,
@@ -86,7 +86,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p180-320",
     model: "180/320",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/Horse.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "metal support",
     minHeight: 180,
     maxHeight: 320,
@@ -103,7 +103,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p200-360",
     model: "200/360",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/RobotExpressive.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "building support",
     minHeight: 200,
     maxHeight: 360,
@@ -120,7 +120,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p220-400",
     model: "220/400",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
+    modelSrc: "/models/model.glb",
     dataAiHint: "shoring prop",
     minHeight: 220,
     maxHeight: 400,
