@@ -108,6 +108,16 @@ export default function Home() {
                 {link.label}
               </a>
             ))}
+            <div className="flex gap-4 items-center">
+              <a href="https://www.facebook.com/bandasdepvcymonosparacimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <FacebookIcon className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
+              </a>
+              <a href="https://www.instagram.com/dfac_cimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </a>
+            </div>
           </nav>
           <div className="flex items-center gap-2">
             <Button onClick={() => setIsModalOpen(true)} className="hidden sm:inline-flex">
@@ -126,7 +136,17 @@ export default function Home() {
                   {link.label}
                 </a>
               ))}
-              <Button onClick={() => setIsModalOpen(true)} className="w-full mt-2">
+              <div className="flex gap-4 items-center mt-4">
+                <a href="https://www.facebook.com/bandasdepvcymonosparacimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <FacebookIcon className="h-6 w-6" />
+                  <span className="sr-only">Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/dfac_cimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Instagram className="h-6 w-6" />
+                  <span className="sr-only">Instagram</span>
+                </a>
+              </div>
+              <Button onClick={() => setIsModalOpen(true)} className="w-full mt-4">
                 Solicitar Cotización
               </Button>
             </nav>
