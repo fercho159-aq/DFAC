@@ -321,7 +321,7 @@ export default function Home() {
                   <Phone className="w-4 h-4" />
                   <span>55 1234 5678</span>
                 </a>
-                <a href="https://wa.me/525512345678" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
+                <a href="https://wa.me/5215549414017" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <MessageSquare className="w-4 h-4" />
                   <span>WhatsApp</span>
                 </a>
