@@ -165,7 +165,7 @@ export default function PuntalSelector() {
                 onValueChange={(value) => setModelIndex(value[0])}
                 className="mt-3"
               />
-              <div className="flex justify-between text-xs text-muted-foreground mt-2 px-1">
+              <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 text-xs text-muted-foreground mt-2 px-1">
                 {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
               </div>
           </CardContent>
