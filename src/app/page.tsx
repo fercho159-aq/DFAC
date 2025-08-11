@@ -63,19 +63,19 @@ const heroBanners = [
   {
     title: "Puntales Metálicos Extensibles de Alta Resistencia",
     subtitle: "Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción.",
-    imageUrl: "https://placehold.co/1920x1080.png",
+    imageUrl: "/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg",
     dataAiHint: "construction site"
   },
   {
     title: "Innovación y Calidad para la Construcción Moderna",
     subtitle: "Nuestros productos están diseñados para cumplir con los más altos estándares de la industria.",
-    imageUrl: "https://placehold.co/1920x1080.png",
+    imageUrl: "/images/c37f69ed-878d-4030-b25e-dbd39b098453.jpg",
     dataAiHint: "building architecture"
   },
   {
     title: "Asesoramiento Experto a tu Disposición",
     subtitle: "Más de 20 años de experiencia nos respaldan para ofrecerte la mejor solución.",
-    imageUrl: "https://placehold.co/1920x1080.png",
+    imageUrl: "/images/e9b2b57f-d055-479f-bf53-3c194020ba59.jpg",
     dataAiHint: "construction plans"
   }
 ]
@@ -213,7 +213,7 @@ export default function Home() {
             <div className="animate-in fade-in-0 slide-in-from-right-12 duration-500 overflow-hidden rounded-lg shadow-xl">
                <video
                   className="w-full h-auto object-cover"
-                  src="https://www.platz-maler.de/wp-content/video/malerbetrieb_platz_imagevideo.mp4"
+                  src="/videos/VIDEO-2025-08-05-12-37-33.mp4"
                   width={600}
                   height={400}
                   autoPlay
