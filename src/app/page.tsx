@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/carousel"
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import Autoplay from "embla-carousel-autoplay";
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
@@ -57,6 +58,21 @@ const beneficios = [
     description: 'Fabricados con acero de alta calidad que asegura una larga vida útil y resistencia a la corrosión.'
   }
 ];
+
+const heroBanners = [
+  {
+    title: "Puntales Metálicos Extensibles de Alta Resistencia",
+    subtitle: "Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción."
+  },
+  {
+    title: "Innovación y Calidad para la Construcción Moderna",
+    subtitle: "Nuestros productos están diseñados para cumplir con los más altos estándares de la industria."
+  },
+  {
+    title: "Asesoramiento Experto a tu Disposición",
+    subtitle: "Más de 20 años de experiencia nos respaldan para ofrecerte la mejor solución."
+  }
+]
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -115,14 +131,29 @@ export default function Home() {
       <main className="flex-grow">
         <section id="inicio" className="relative text-center py-20 md:py-32 px-4 bg-secondary/30 overflow-hidden">
             <div className="container mx-auto">
-                <div className="sliding-text-container">
-                    <h1 className="animate-sliding-text text-4xl md:text-6xl font-bold text-primary tracking-tighter whitespace-nowrap">
-                        Puntales Metálicos Extensibles de Alta Resistencia
-                    </h1>
-                </div>
-                <p className="mt-4 md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                    Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción.
-                </p>
+              <Carousel
+                plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+                opts={{ loop: true }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {heroBanners.map((banner, index) => (
+                    <CarouselItem key={index}>
+                      <div className="flex flex-col items-center justify-center">
+                         <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tighter">
+                            {banner.title}
+                        </h1>
+                        <p className="mt-4 md:text-xl text-muted-foreground max-w-3xl mx-auto">
+                            {banner.subtitle}
+                        </p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex -left-4" />
+                <CarouselNext className="hidden md:flex -right-4" />
+              </Carousel>
+                
                 <div className="mt-8 flex justify-center gap-4">
                     <Button size="lg" onClick={() => setIsModalOpen(true)}>
                         <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
@@ -202,6 +233,7 @@ export default function Home() {
                 align: "start",
                 loop: true,
               }}
+              plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
               className="w-full"
             >
               <CarouselContent>

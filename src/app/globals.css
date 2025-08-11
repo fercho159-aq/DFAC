@@ -71,21 +71,3 @@
 .animate-highlight {
   animation: highlight-value 0.5s ease-out;
 }
-
-@keyframes sliding-text {
-  0% {
-    transform: translateX(50%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.sliding-text-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.animate-sliding-text {
-  animation: sliding-text 15s linear infinite;
-}
