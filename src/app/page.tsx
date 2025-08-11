@@ -113,7 +113,7 @@ export default function Home() {
             <Button onClick={() => setIsModalOpen(true)} className="hidden sm:inline-flex">
               Solicitar Cotización
             </Button>
-            <div className="hidden sm:flex gap-4 items-center">
+            <div className="flex gap-4 items-center">
               <a href="https://www.facebook.com/bandasdepvcymonosparacimbra/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                 <FacebookIcon className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
@@ -191,10 +191,6 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className='absolute bottom-8 left-1/2 -translate-x-1/2 z-20'>
-              <CarouselPrevious className="static -translate-y-0" />
-              <CarouselNext className="static -translate-y-0" />
-            </div>
           </Carousel>
         </section>
 
@@ -400,5 +396,7 @@ export default function Home() {
     </div>
   );
 }
+
+    
 
     
