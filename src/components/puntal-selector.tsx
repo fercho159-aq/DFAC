@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -5,9 +6,15 @@ import Image from 'next/image';
 import { puntalesData, type Puntal } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ContactModal } from '@/components/contact-modal';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import {
   ArrowDownToLine,
   ArrowUpToLine,
@@ -15,14 +22,15 @@ import {
   Shield,
   BadgeCheck,
   Weight,
-  MessageSquare,
+  Layers,
+  Ruler,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const SpecItem = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: string | number }) => (
-  <div className="flex items-start gap-4">
-    <div className="mt-1 text-primary">
-      <Icon className="w-5 h-5" />
+  <div className="flex items-center gap-4 text-left">
+    <div className="flex-shrink-0 text-primary bg-primary/10 p-3 rounded-full">
+      <Icon className="w-6 h-6" />
     </div>
     <div>
       <p className="font-bold text-base">{label}</p>
@@ -35,7 +43,6 @@ export default function PuntalSelector() {
   const [modelIndex, setModelIndex] = useState(3);
   const [currentHeight, setCurrentHeight] = useState(puntalesData[3].minHeight);
   const [maxLoad, setMaxLoad] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [highlightKey, setHighlightKey] = useState(0);
 
   const currentModel: Puntal = puntalesData[modelIndex];
@@ -62,25 +69,24 @@ export default function PuntalSelector() {
     }
   }, [currentHeight, currentModel, maxLoad]);
 
-  const SpecList = useMemo(() => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-4">
-      <SpecItem icon={ArrowDownToLine} label="Altura Mínima" value={`${currentModel.minHeight} cm`} />
-      <SpecItem icon={ArrowUpToLine} label="Altura Máxima" value={`${currentModel.maxHeight} cm`} />
-      <SpecItem icon={Circle} label="Diámetro de Tubos" value={currentModel.tubeDiameter} />
-      <SpecItem icon={Shield} label="Tipo de Acero" value={currentModel.steelType} />
-      <SpecItem icon={BadgeCheck} label="Normas de Producción" value={currentModel.productionNorms} />
-    </div>
-  ), [currentModel]);
-
+  const productFeatures = [
+    { icon: Shield, label: "Acero de Alta Resistencia", value: "Fabricado con acero S235JRH para máxima durabilidad." },
+    { icon: BadgeCheck, label: "Normas de Producción", value: "Cumple con la estricta norma europea UNI EN 729-2: 1996." },
+    { icon: Layers, label: "Sistema Anti-Cizallamiento", value: "Diseño de mano segura para prevenir accidentes durante el ajuste." },
+    { icon: Circle, label: "Placas de Distribución", value: "Bases planas y reforzadas para una óptima distribución de la carga." },
+  ];
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
+    <div className="w-full">
       <div
         key={currentModel.id}
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start animate-in fade-in duration-500"
       >
-        <div className="flex flex-col gap-8 sticky top-24">
+        <div className="flex flex-col gap-6 sticky top-28">
           <Card className="overflow-hidden shadow-xl border-2 border-border/60">
+             <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
+                Modelo: {currentModel.model}
+            </div>
             <Image
               src={currentModel.image}
               alt={`Puntal modelo ${currentModel.model}`}
@@ -91,18 +97,29 @@ export default function PuntalSelector() {
               className="w-full h-auto object-cover aspect-square"
             />
           </Card>
+           <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Ruler className="w-6 h-6 text-primary" />
+                <span>Especificaciones</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+               <SpecItem icon={ArrowDownToLine} label="Altura Mínima" value={`${currentModel.minHeight} cm`} />
+               <SpecItem icon={ArrowUpToLine} label="Altura Máxima" value={`${currentModel.maxHeight} cm`} />
+               <SpecItem icon={Circle} label="Diámetro de Tubos" value={currentModel.tubeDiameter} />
+            </CardContent>
+          </Card>
         </div>
 
         <div className="flex flex-col gap-8">
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                Puntal Metálico Modelo {currentModel.model}
+              <CardTitle className="text-xl font-bold tracking-tight text-primary">
+                1. Selecciona el Modelo
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <label htmlFor="model-slider" className="text-lg font-bold">Seleccionar Modelo</label>
+            <CardContent>
                 <Slider
                   id="model-slider"
                   min={0}
@@ -112,16 +129,21 @@ export default function PuntalSelector() {
                   onValueChange={(value) => setModelIndex(value[0])}
                   className="mt-3"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2">
+                <div className="flex justify-between text-xs text-muted-foreground mt-2 px-1">
                   {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
                 </div>
-              </div>
+            </CardContent>
+          </Card>
 
-              <Separator />
-
-              <div>
-                <div className="flex justify-between items-baseline">
-                  <label htmlFor="height-slider" className="text-lg font-bold">Ajustar Altura</label>
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold tracking-tight text-primary">
+                2. Ajusta la Altura
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="flex justify-between items-baseline mb-3">
+                  <label htmlFor="height-slider" className="text-base font-medium">Altura de trabajo:</label>
                   <p className="text-2xl font-bold text-primary tabular-nums">
                     {currentHeight.toFixed(0)} <span className="text-sm font-normal">cm</span>
                   </p>
@@ -133,21 +155,19 @@ export default function PuntalSelector() {
                   step={1}
                   value={[currentHeight]}
                   onValueChange={(value) => setCurrentHeight(value[0])}
-                  className="mt-3"
                 />
                  <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                  <span>{currentModel.minHeight} cm</span>
-                  <span>{currentModel.maxHeight} cm</span>
+                  <span>{currentModel.minHeight} cm (mín)</span>
+                  <span>{currentModel.maxHeight} cm (máx)</span>
                 </div>
-              </div>
             </CardContent>
           </Card>
-
+          
           <Card className="shadow-lg bg-primary/5">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl md:text-2xl">
+              <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl">
                 <Weight className="w-7 h-7 text-primary" />
-                <span>Capacidad de Carga</span>
+                <span>Capacidad de Carga Resultante</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="text-center">
@@ -157,36 +177,45 @@ export default function PuntalSelector() {
               <p className="text-muted-foreground mt-1">kg a {currentHeight.toFixed(0)} cm de altura</p>
             </CardContent>
           </Card>
-
+          
           <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle className="text-xl md:text-2xl">Ficha Técnica</CardTitle>
+              <CardTitle>Tabla de Cargas de {currentModel.model}</CardTitle>
             </CardHeader>
             <CardContent>
-              {SpecList}
+               <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[50%]">Altura (cm)</TableHead>
+                    <TableHead className="text-right">Carga Máxima (kg)</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {currentModel.loadTable.map((entry) => (
+                    <TableRow key={entry.height} className={cn(currentHeight <= entry.height && maxLoad === entry.load ? "bg-primary/10 font-bold" : "")}>
+                      <TableCell>Hasta {entry.height}</TableCell>
+                      <TableCell className="text-right">{entry.load.toLocaleString('es-ES')}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </CardContent>
           </Card>
           
-          <Button 
-            size="lg" 
-            onClick={() => setIsModalOpen(true)} 
-            className="w-full text-lg font-bold py-7 md:hidden sticky bottom-4 z-30 shadow-2xl"
-          >
-            <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
-          </Button>
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle>Características del Producto</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+                {productFeatures.map((feature, index) => (
+                    <SpecItem key={index} icon={feature.icon} label={feature.label} value={feature.value} />
+                ))}
+            </CardContent>
+          </Card>
         </div>
       </div>
-      <div className="hidden md:block mt-8 text-center">
-         <Button 
-            size="lg" 
-            onClick={() => setIsModalOpen(true)} 
-            className="text-lg font-bold py-7 px-10 shadow-lg"
-          >
-            <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
-          </Button>
-      </div>
-
-      <ContactModal isOpen={isModalOpen} onOpenChange={setIsModalOpen} />
     </div>
   );
 }
+
+    
