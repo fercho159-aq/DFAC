@@ -1,3 +1,4 @@
+
 export type LoadData = {
   height: number; // in cm
   load: number; // in kg
@@ -20,7 +21,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p50-100",
     model: "50/100",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/BoomBox/glTF-Binary/BoomBox.glb",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/BoomBox/glTF/BoomBox.gltf",
     dataAiHint: "construction prop",
     minHeight: 50,
     maxHeight: 100,
@@ -52,7 +53,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p100-170",
     model: "100/170",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Duck/glTF-Binary/Duck.glb",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Duck.glb",
     dataAiHint: "adjustable prop",
     minHeight: 100,
     maxHeight: 170,
@@ -119,7 +120,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p220-400",
     model: "220/400",
-    modelSrc: "https://modelviewer.dev/shared-assets/models/alpha-blend-litmus.glb",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/AlphaBlendModeTest/glTF-Binary/AlphaBlendModeTest.glb",
     dataAiHint: "shoring prop",
     minHeight: 220,
     maxHeight: 400,
