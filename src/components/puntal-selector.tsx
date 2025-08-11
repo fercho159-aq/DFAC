@@ -1,12 +1,10 @@
 
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { puntalesData, type Puntal } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
-import { Separator } from '@/components/ui/separator';
 import {
   Table,
   TableBody,
@@ -26,6 +24,24 @@ import {
   Ruler,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+
+// Asigna un tipo JSX para model-viewer
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'model-viewer': MyModelViewerProps;
+    }
+    interface MyModelViewerProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
+        src: string;
+        alt: string;
+        'camera-controls'?: boolean;
+        'auto-rotate'?: boolean;
+        'shadow-intensity'?: string;
+        style?: React.CSSProperties;
+    }
+  }
+}
 
 const SpecItem = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: string | number }) => (
   <div className="flex items-center gap-4 text-left">
@@ -87,15 +103,15 @@ export default function PuntalSelector() {
              <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
                 Modelo: {currentModel.model}
             </div>
-            <Image
-              src={currentModel.image}
-              alt={`Puntal modelo ${currentModel.model}`}
-              data-ai-hint={currentModel.dataAiHint}
-              width={600}
-              height={600}
-              priority
-              className="w-full h-auto object-cover aspect-square"
-            />
+            <model-viewer
+                src={currentModel.modelSrc}
+                alt={`Puntal modelo ${currentModel.model}`}
+                camera-controls
+                auto-rotate
+                shadow-intensity="1"
+                style={{ width: '100%', height: '500px', backgroundColor: '#fafafa' }}
+            >
+            </model-viewer>
           </Card>
            <Card className="shadow-lg">
             <CardHeader>
@@ -217,5 +233,3 @@ export default function PuntalSelector() {
     </div>
   );
 }
-
-    

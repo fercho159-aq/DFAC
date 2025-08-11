@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'DFAC Accesorios para Cimbras – Selector de Puntales',
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={cn("font-body antialiased min-h-screen")}>
         {children}
         <Toaster />
+        <Script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js" async />
       </body>
     </html>
   );

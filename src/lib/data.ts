@@ -6,7 +6,7 @@ export type LoadData = {
 export type Puntal = {
   id: string;
   model: string;
-  image: string;
+  modelSrc: string;
   dataAiHint: string;
   minHeight: number; // cm
   maxHeight: number; // cm
@@ -20,7 +20,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p50-100",
     model: "50/100",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "construction prop",
     minHeight: 50,
     maxHeight: 100,
@@ -36,7 +36,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p70-120",
     model: "70/120",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "steel support",
     minHeight: 70,
     maxHeight: 120,
@@ -52,7 +52,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p100-170",
     model: "100/170",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "adjustable prop",
     minHeight: 100,
     maxHeight: 170,
@@ -68,7 +68,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p160-290",
     model: "160/290",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "formwork prop",
     minHeight: 160,
     maxHeight: 290,
@@ -85,7 +85,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p180-320",
     model: "180/320",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "metal support",
     minHeight: 180,
     maxHeight: 320,
@@ -102,7 +102,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p200-360",
     model: "200/360",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "building support",
     minHeight: 200,
     maxHeight: 360,
@@ -119,7 +119,7 @@ export const puntalesData: Puntal[] = [
   {
     id: "p220-400",
     model: "220/400",
-    image: "https://placehold.co/600x600.png",
+    modelSrc: "https://modelviewer.dev/shared-assets/models/Astronaut.glb",
     dataAiHint: "shoring prop",
     minHeight: 220,
     maxHeight: 400,
