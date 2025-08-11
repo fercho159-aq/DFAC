@@ -11,8 +11,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -164,7 +162,7 @@ export default function Home() {
             <CarouselContent>
               {heroBanners.map((banner, index) => (
                 <CarouselItem key={index}>
-                  <div className="relative flex flex-col items-center justify-center py-40 md:py-56 h-[60vh] md:h-auto">
+                  <div className="relative h-[60vh] w-full flex flex-col items-center justify-center">
                     <Image
                         src={banner.imageUrl}
                         alt={banner.title}
@@ -220,6 +218,7 @@ export default function Home() {
                   muted
                   loop
                   playsInline
+                  controls
                 >
                   Tu navegador no soporta el tag de video.
                 </video>
@@ -288,8 +287,6 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="hidden sm:flex" />
-              <CarouselNext className="hidden sm:flex" />
             </Carousel>
           </div>
         </section>
@@ -396,7 +393,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
-
-    
