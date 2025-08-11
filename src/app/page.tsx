@@ -287,9 +287,9 @@ export default function Home() {
               <Button size="lg" variant="secondary" onClick={() => setIsModalOpen(true)}>
                 <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
               </Button>
-              <a href="tel:+525512345678" className="flex items-center gap-2 hover:underline">
+              <a href="tel:+525525989751" className="flex items-center gap-2 hover:underline">
                 <Phone className="w-5 h-5" />
-                <span>Llámanos: 55 1234 5678</span>
+                <span>Llámanos: (55) 2598-9751</span>
               </a>
             </div>
           </div>
@@ -317,9 +317,17 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-2">Contacto Directo</h3>
               <div className="flex flex-col items-center md:items-start gap-2 text-sm">
-                 <a href="tel:+525512345678" className="flex items-center gap-2 hover:text-primary transition-colors">
+                 <a href="tel:+525525989751" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <Phone className="w-4 h-4" />
-                  <span>55 1234 5678</span>
+                  <span>(55) 2598-9751</span>
+                </a>
+                 <a href="tel:+525541673745" className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <Phone className="w-4 h-4" />
+                  <span>(55) 4167-3745</span>
+                </a>
+                 <a href="tel:+525555715084" className="flex items-center gap-2 hover:text-primary transition-colors">
+                  <Phone className="w-4 h-4" />
+                  <span>(55) 5571-5084</span>
                 </a>
                 <a href="https://wa.me/5215549414017" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <MessageSquare className="w-4 h-4" />
