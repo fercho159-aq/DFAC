@@ -113,11 +113,13 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section id="inicio" className="relative text-center py-20 md:py-32 px-4 bg-secondary/30">
+        <section id="inicio" className="relative text-center py-20 md:py-32 px-4 bg-secondary/30 overflow-hidden">
             <div className="container mx-auto">
-                <h1 className="text-4xl md:text-6xl font-bold text-primary tracking-tighter">
-                    Puntales Metálicos Extensibles de Alta Resistencia
-                </h1>
+                <div className="sliding-text-container">
+                    <h1 className="animate-sliding-text text-4xl md:text-6xl font-bold text-primary tracking-tighter whitespace-nowrap">
+                        Puntales Metálicos Extensibles de Alta Resistencia
+                    </h1>
+                </div>
                 <p className="mt-4 md:text-xl text-muted-foreground max-w-3xl mx-auto">
                     Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción.
                 </p>
