@@ -152,7 +152,7 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-          <div className="relative h-[80vh] min-h-[600px] w-full flex flex-col items-center justify-center">
+          <div className="relative w-full flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-0 md:h-[80vh]">
             <Image
                 src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                 alt="Puntales Metálicos en Obra"
@@ -162,7 +162,7 @@ export default function Home() {
                 priority
             />
             <div className="absolute inset-0 bg-black/70 z-10"></div>
-             <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
+             <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-16 md:py-0">
                 <div className="max-w-4xl">
                     <div className="inline-block bg-primary/20 text-accent px-3 py-1 rounded-full text-sm mb-4 border border-accent/50">
                         ¡Entrega garantizada en menos de 24 horas!
@@ -183,19 +183,17 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="absolute bottom-8 left-0 right-0 w-full">
-                  <div className="container mx-auto px-4">
-                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-                        {heroFeatures.map((feature, index) => (
-                          <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
-                            <feature.icon className="w-8 h-8 text-accent"/>
-                            <div>
-                                <h3 className="font-bold text-white">{feature.title}</h3>
-                                <p className="text-white/80 text-sm">{feature.description}</p>
-                            </div>
-                          </div>
-                        ))}
-                     </div>
+                <div className="w-full mt-12 md:mt-16">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                    {heroFeatures.map((feature, index) => (
+                      <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
+                        <feature.icon className="w-8 h-8 text-accent"/>
+                        <div>
+                            <h3 className="font-bold text-white">{feature.title}</h3>
+                            <p className="text-white/80 text-sm">{feature.description}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
              </div>
