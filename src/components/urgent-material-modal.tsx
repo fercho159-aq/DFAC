@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Phone, MessageSquare, X } from 'lucide-react';
+import { Phone, MessageSquare } from 'lucide-react';
 import type { Dispatch, SetStateAction } from 'react';
 
 interface UrgentMaterialModalProps {
@@ -22,12 +22,12 @@ export function UrgentMaterialModal({ isOpen, onOpenChange }: UrgentMaterialModa
       <DialogContent className="sm:max-w-md text-center">
         <DialogHeader>
           <DialogTitle className="text-2xl text-primary font-bold">
-            SI NECESITAS MATERIAL URGENTE, ¡DA CLIC AQUÍ!
+            ¿Necesitas material urgente?
           </DialogTitle>
         </DialogHeader>
         <div className="py-4 space-y-4">
           <p className="text-muted-foreground">
-            Nuestro equipo está listo para atender tu pedido de inmediato.
+            Nuestro equipo está listo para atender tu pedido de inmediato. ¡Contáctanos ahora!
           </p>
           <Button asChild size="lg" className="w-full bg-green-500 hover:bg-green-600 text-white">
             <a href="https://wa.me/5215549414017?text=Hola,%20necesito%20material%20urgente." target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3">
@@ -42,9 +42,6 @@ export function UrgentMaterialModal({ isOpen, onOpenChange }: UrgentMaterialModa
             </a>
           </Button>
         </div>
-         <Button variant="ghost" onClick={() => onOpenChange(false)} className="mx-auto text-sm text-muted-foreground">
-            Cerrar
-        </Button>
       </DialogContent>
     </Dialog>
   );
