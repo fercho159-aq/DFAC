@@ -19,8 +19,9 @@ import { FacebookIcon } from '@/components/icons';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
-  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#beneficios', label: 'Beneficios' },
   { href: '#modelos', label: 'Modelos' },
+  { href: '#nosotros', label: 'Nosotros' },
   { href: '#clientes', label: 'Clientes' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -56,27 +57,6 @@ const beneficios = [
     description: 'Fabricados con acero de alta calidad que asegura una larga vida útil y resistencia a la corrosión.'
   }
 ];
-
-const heroBanners = [
-  {
-    title: "Puntales Metálicos Extensibles de Alta Resistencia",
-    subtitle: "Seguridad, durabilidad y precisión en cada obra. La solución ideal para tus proyectos de construcción.",
-    imageUrl: "/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg",
-    dataAiHint: "construction site"
-  },
-  {
-    title: "Innovación y Calidad para la Construcción Moderna",
-    subtitle: "Nuestros productos están diseñados para cumplir con los más altos estándares de la industria.",
-    imageUrl: "/images/c37f69ed-878d-4030-b25e-dbd39b098453.jpg",
-    dataAiHint: "building architecture"
-  },
-  {
-    title: "Asesoramiento Experto a tu Disposición",
-    subtitle: "Más de 20 años de experiencia nos respaldan para ofrecerte la mejor solución.",
-    imageUrl: "/images/e9b2b57f-d055-479f-bf53-3c194020ba59.jpg",
-    dataAiHint: "construction plans"
-  }
-]
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -154,57 +134,79 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative text-center text-white bg-black">
-          <Carousel
-            plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
-            opts={{ loop: true }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {heroBanners.map((banner, index) => (
-                <CarouselItem key={index}>
-                  <div className="relative h-[60vh] w-full flex flex-col items-center justify-center">
-                    <Image
-                        src={banner.imageUrl}
-                        alt={banner.title}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={banner.dataAiHint}
-                        priority={index === 0}
-                    />
-                    <div className="absolute inset-0 bg-black/60 z-10"></div>
-                     <div className="relative z-20 container mx-auto px-4">
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-                            {banner.title}
-                        </h1>
-                        <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
-                            {banner.subtitle}
-                        </p>
-                        <div className="mt-8 flex justify-center gap-4">
-                            <Button size="lg" onClick={() => setIsModalOpen(true)}>
-                                <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
-                            </Button>
-                        </div>
-                     </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          <div className="relative h-[60vh] w-full flex flex-col items-center justify-center">
+            <Image
+                src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
+                alt="Puntales Metálicos en Obra"
+                fill
+                className="object-cover"
+                data-ai-hint="construction site"
+                priority
+            />
+            <div className="absolute inset-0 bg-black/60 z-10"></div>
+             <div className="relative z-20 container mx-auto px-4">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+                    La Solución Ideal para tus Proyectos de Construcción
+                </h1>
+                <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
+                    Puntales Metálicos Extensibles de Alta Resistencia. Seguridad, durabilidad y precisión en cada obra.
+                </p>
+                <div className="mt-8 flex justify-center gap-4">
+                    <Button size="lg" onClick={() => setIsModalOpen(true)}>
+                        <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
+                    </Button>
+                </div>
+             </div>
+          </div>
+        </section>
+
+        <section id="beneficios" className="py-16 md:py-24 px-4">
+            <div className="container mx-auto">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h2 className="text-3xl font-bold text-primary">El Aliado Perfecto para tu Obra</h2>
+                    <p className="text-muted-foreground mt-2">
+                        Nuestros puntales están diseñados para ofrecer el máximo rendimiento y seguridad en cualquier situación.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {beneficios.map((item, index) => (
+                        <Card key={index} className="text-center p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <div className="flex justify-center mb-4">
+                                <item.icon className="w-12 h-12 text-primary"/>
+                            </div>
+                            <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                            <p className="text-muted-foreground">{item.description}</p>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section id="modelos" className="py-16 md:py-24 px-4 bg-secondary/30">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
+              <p className="text-muted-foreground mt-2">
+                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
+              </p>
+            </div>
+            <PuntalSelector />
+          </div>
         </section>
 
         <section id="nosotros" className="py-16 md:py-24 px-4">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-in fade-in-0 slide-in-from-left-12 duration-500">
-              <h2 className="text-3xl font-bold text-primary mb-4">Sobre Nosotros</h2>
+              <h2 className="text-3xl font-bold text-primary mb-4">Más de 10 Años de Experiencia</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  DFAC fue fundado el 16 de mayo del 2013, en un pequeño local donde solo los fundadores éramos los encargados de entregar el material y llevar a cabo las ventas. Desde el principio se supo que ofrecer un servicio rápido y eficiente era crucial para la satisfacción de los clientes.
+                  Desde 2013, en DFAC nos hemos dedicado a ofrecer un servicio rápido y eficiente, convirtiéndonos en un referente de confianza en el sector.
                 </p>
                 <p>
-                  Gracias a esta filosofía la empresa empezó a crecer y a ganarse una sólida reputación, basada en la excelencia del servicio. Retribuyendo al crecimiento de la empresa se adquirió maquinaria especializada para la fabricación de moños y cuñas para cimbra, siendo este nuestro producto estrella, esto hizo que nos diera el impulso necesario para aumentar más la velocidad de entrega y la mejora de la calidad de nuestros productos.
+                  Nuestra filosofía de excelencia nos ha permitido crecer y equiparnos con maquinaria especializada para fabricar productos de la más alta calidad, garantizando entregas rápidas y la satisfacción de nuestros clientes.
                 </p>
                 <p>
-                  Hoy, seguimos fieles a nuestros valores iniciales y agradecemos a todos nuestros clientes por confiar en nosotros y recomendarnos.
+                  Hoy, agradecemos a quienes confían en nosotros y seguimos comprometidos con los valores que nos vieron nacer.
                 </p>
               </div>
             </div>
@@ -226,46 +228,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="modelos" className="py-16 md:py-24 px-4 bg-secondary/30">
-          <div className="container mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold text-primary">Selector Interactivo de Puntales</h2>
-              <p className="text-muted-foreground mt-2">
-                Encuentra el puntal perfecto para tu proyecto. Ajusta el modelo y la altura para ver la capacidad de carga en tiempo real.
-              </p>
-            </div>
-            <PuntalSelector />
-          </div>
-        </section>
-        
-        <section id="beneficios" className="py-16 md:py-24 px-4">
-            <div className="container mx-auto">
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <h2 className="text-3xl font-bold text-primary">Beneficios y Casos de Uso</h2>
-                    <p className="text-muted-foreground mt-2">
-                        Nuestros puntales están diseñados para ofrecer el máximo rendimiento en cualquier situación.
-                    </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {beneficios.map((item, index) => (
-                        <Card key={index} className="text-center p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
-                            <div className="flex justify-center mb-4">
-                                <item.icon className="w-12 h-12 text-primary"/>
-                            </div>
-                            <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                            <p className="text-muted-foreground">{item.description}</p>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-        </section>
-
         <section id="clientes" className="py-16 md:py-24 px-4 bg-secondary/30">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold text-primary">Nuestros Clientes</h2>
+              <h2 className="text-3xl font-bold text-primary">Confían en Nosotros</h2>
               <p className="text-muted-foreground mt-2">
-                Empresas líderes en la industria de la construcción confían en la calidad y seguridad de los productos DFAC.
+                Empresas líderes en la industria de la construcción respaldan la calidad y seguridad de los productos DFAC.
               </p>
             </div>
             <Carousel
@@ -274,11 +242,11 @@ export default function Home() {
                 loop: true,
               }}
               plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
-              className="w-full"
+              className="w-full max-w-6xl mx-auto"
             >
               <CarouselContent>
                 {clientes.map((cliente, index) => (
-                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
                     <div className="p-1">
                       <Card className="flex items-center justify-center p-6 h-32 bg-background">
                          <Image src={cliente.logo} alt={cliente.name} width={120} height={50} className="object-contain" data-ai-hint="company logo" />
@@ -293,15 +261,15 @@ export default function Home() {
 
         <section id="contacto" className="py-16 md:py-24 px-4 text-center bg-primary text-primary-foreground">
           <div className="container mx-auto">
-            <h2 className="text-3xl font-bold">Solicita tu cotización ahora y optimiza tu obra.</h2>
-            <p className="mt-4 text-lg text-primary-foreground/80">
-              Nuestro equipo está listo para asesorarte.
+            <h2 className="text-3xl md:text-4xl font-bold">¿Listo para Optimizar tu Obra?</h2>
+            <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
+              No esperes más. Contacta a nuestro equipo de expertos ahora y recibe la asesoría que necesitas para tu proyecto.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6">
               <Button size="lg" variant="secondary" onClick={() => setIsModalOpen(true)}>
                 <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
               </Button>
-              <a href="tel:+525525989751" className="flex items-center gap-2 hover:underline">
+              <a href="tel:+525525989751" className="flex items-center gap-2 hover:underline text-lg">
                 <Phone className="w-5 h-5" />
                 <span>Llámanos: (55) 2598-9751</span>
               </a>
@@ -393,3 +361,6 @@ export default function Home() {
     </div>
   );
 }
+
+
+    
