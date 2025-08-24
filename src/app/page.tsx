@@ -72,7 +72,7 @@ const heroFeatures = [
     {
         icon: Truck,
         title: "Flete Gratis",
-        description: "En compras mayores a $2,000 (CDMX y Zona Metro)"
+        description: "En CDMX y Zona Metropolitana"
     }
 ];
 
