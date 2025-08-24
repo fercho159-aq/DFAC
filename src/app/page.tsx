@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart, Instagram } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart, Instagram, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import {
@@ -37,14 +37,14 @@ const clientes = [
 
 const beneficios = [
   {
+    icon: Truck,
+    title: 'Entrega en Menos de 24h',
+    description: 'Recibe tu material en obra con nuestra garantía de entrega express para no detener tu proyecto.'
+  },
+  {
     icon: Shield,
     title: 'Seguridad en Obra',
     description: 'Nuestros puntales cumplen con las más altas normas de seguridad para garantizar la protección en tu proyecto.'
-  },
-  {
-    icon: BarChart,
-    title: 'Versatilidad y Aplicaciones',
-    description: 'Con un amplio rango de alturas, se adaptan a cualquier necesidad de encofrado y cimbra.'
   },
   {
     icon: CheckCircle,
@@ -151,6 +151,7 @@ export default function Home() {
                 <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
                     Puntales Metálicos Extensibles de Alta Resistencia. Seguridad, durabilidad y precisión en cada obra.
                 </p>
+                <p className="mt-6 text-lg font-semibold text-accent"><Truck className="inline-block mr-2 h-6 w-6" />¡Entrega garantizada en menos de 24 horas!</p>
                 <div className="mt-8 flex justify-center gap-4">
                     <Button size="lg" onClick={() => setIsModalOpen(true)}>
                         <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
@@ -263,7 +264,7 @@ export default function Home() {
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">¿Listo para Optimizar tu Obra?</h2>
             <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-              No esperes más. Contacta a nuestro equipo de expertos ahora y recibe la asesoría que necesitas para tu proyecto.
+              Contacta ahora y recibe tu material en menos de 24 horas. ¡Garantizado!
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6">
               <Button size="lg" variant="secondary" onClick={() => setIsModalOpen(true)}>
@@ -362,5 +363,7 @@ export default function Home() {
   );
 }
 
+
+    
 
     
