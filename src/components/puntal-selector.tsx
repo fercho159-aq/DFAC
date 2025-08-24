@@ -63,8 +63,8 @@ const SpecItem = ({ icon: Icon, label, value }: { icon: React.ElementType, label
 );
 
 export default function PuntalSelector() {
-  const [modelIndex, setModelIndex] = useState(3);
-  const [currentHeight, setCurrentHeight] = useState(puntalesData[3].minHeight);
+  const [modelIndex, setModelIndex] = useState(0);
+  const [currentHeight, setCurrentHeight] = useState(puntalesData[0].minHeight);
   const [maxLoad, setMaxLoad] = useState(0);
   const [highlightKey, setHighlightKey] = useState(0);
 
@@ -175,7 +175,7 @@ export default function PuntalSelector() {
                   <SelectContent>
                     {puntalesData.map((puntal, index) => (
                       <SelectItem key={puntal.id} value={String(index)}>
-                        Modelo {puntal.model}
+                        {puntal.model}
                       </SelectItem>
                     ))}
                   </SelectContent>
