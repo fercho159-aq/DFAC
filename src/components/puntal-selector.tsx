@@ -72,8 +72,10 @@ export default function PuntalSelector() {
 
   useEffect(() => {
     // Reset height to the new model's minimum height to avoid invalid states
-    setCurrentHeight(currentModel.minHeight);
-  }, [modelIndex, currentModel.minHeight]);
+    if (puntalesData[modelIndex]) {
+      setCurrentHeight(puntalesData[modelIndex].minHeight);
+    }
+  }, [modelIndex]);
 
   useEffect(() => {
     const calculateLoad = (model: Puntal, height: number): number => {
@@ -90,11 +92,13 @@ export default function PuntalSelector() {
       return sortedTable[sortedTable.length - 1]?.load || 0;
     };
 
-    const newLoad = calculateLoad(currentModel, currentHeight);
-    if (newLoad !== maxLoad) {
-      setMaxLoad(newLoad);
-      // Change the key to re-trigger the animation
-      setHighlightKey(prev => prev + 1);
+    if (currentModel) {
+      const newLoad = calculateLoad(currentModel, currentHeight);
+      if (newLoad !== maxLoad) {
+        setMaxLoad(newLoad);
+        // Change the key to re-trigger the animation
+        setHighlightKey(prev => prev + 1);
+      }
     }
   }, [currentHeight, currentModel, maxLoad]);
 
@@ -105,10 +109,12 @@ export default function PuntalSelector() {
     { icon: Circle, label: "Placas de Distribución", value: "Bases planas y reforzadas para una óptima distribución de la carga." },
   ];
 
+  if (!currentModel) {
+    return <div>Cargando...</div>;
+  }
+
   return (
-    <div
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
-    >
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <div className="flex flex-col gap-6 lg:sticky top-28">
         <Card className="overflow-hidden shadow-xl border-2 border-border/60 animate-in fade-in duration-500" key={currentModel.id}>
            <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
@@ -163,40 +169,21 @@ export default function PuntalSelector() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-              {/* Mobile: Select component */}
-              <div className="lg:hidden">
-                <Select
-                  value={String(modelIndex)}
-                  onValueChange={(value) => setModelIndex(Number(value))}
-                >
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Selecciona un modelo" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {puntalesData.map((puntal, index) => (
-                      <SelectItem key={puntal.id} value={String(index)}>
-                        {puntal.model}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Desktop: Slider component */}
-              <div className="hidden lg:block">
-                <Slider
-                  id="model-slider"
-                  min={0}
-                  max={puntalesData.length - 1}
-                  step={1}
-                  value={[modelIndex]}
-                  onValueChange={(value) => setModelIndex(value[0])}
-                  className="mt-3"
-                />
-                <div className="flex flex-wrap justify-between gap-x-2 gap-y-1 text-xs text-muted-foreground mt-2 px-1">
-                  {puntalesData.map(p => <span key={p.id}>{p.model}</span>)}
-                </div>
-              </div>
+             <Select
+                value={String(modelIndex)}
+                onValueChange={(value) => setModelIndex(Number(value))}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Selecciona un modelo" />
+                </SelectTrigger>
+                <SelectContent>
+                  {puntalesData.map((puntal, index) => (
+                    <SelectItem key={puntal.id} value={String(index)}>
+                      {puntal.model}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
           </CardContent>
         </Card>
         
