@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart, Instagram, Truck } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart, Instagram, Truck, Clock, PackageCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import {
@@ -56,6 +56,24 @@ const beneficios = [
     title: 'Durabilidad Comprobada',
     description: 'Fabricados con acero de alta calidad que asegura una larga vida útil y resistencia a la corrosión.'
   }
+];
+
+const heroFeatures = [
+    {
+        icon: Clock,
+        title: "Entrega 24h",
+        description: "En CDMX y área metropolitana"
+    },
+    {
+        icon: PackageCheck,
+        title: "Calidad Garantizada",
+        description: "Productos certificados"
+    },
+    {
+        icon: Truck,
+        title: "Flete Gratis",
+        description: "En compras mayores a $2,000"
+    }
 ];
 
 export default function Home() {
@@ -133,8 +151,8 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section id="inicio" className="relative text-center text-white bg-black">
-          <div className="relative h-[60vh] w-full flex flex-col items-center justify-center">
+        <section id="inicio" className="relative bg-black text-white">
+          <div className="relative h-[80vh] min-h-[600px] w-full flex flex-col items-center justify-center">
             <Image
                 src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                 alt="Puntales Metálicos en Obra"
@@ -143,19 +161,42 @@ export default function Home() {
                 data-ai-hint="construction site"
                 priority
             />
-            <div className="absolute inset-0 bg-black/60 z-10"></div>
-             <div className="relative z-20 container mx-auto px-4">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-                    La Solución Ideal para tus Proyectos de Construcción
-                </h1>
-                <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
-                    Puntales Metálicos Extensibles de Alta Resistencia. Seguridad, durabilidad y precisión en cada obra.
-                </p>
-                <p className="mt-6 text-lg font-semibold text-accent"><Truck className="inline-block mr-2 h-6 w-6" />¡Entrega garantizada en menos de 24 horas!</p>
-                <div className="mt-8 flex justify-center gap-4">
-                    <Button size="lg" onClick={() => setIsModalOpen(true)}>
-                        <MessageSquare className="mr-2 h-5 w-5"/> Solicitar Cotización
-                    </Button>
+            <div className="absolute inset-0 bg-black/70 z-10"></div>
+             <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
+                <div className="max-w-4xl">
+                    <div className="inline-block bg-primary/20 text-accent px-3 py-1 rounded-full text-sm mb-4 border border-accent/50">
+                        ¡Entrega garantizada en menos de 24 horas!
+                    </div>
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+                        Tus materiales de <span className="text-accent">construcción</span> en tiempo récord
+                    </h1>
+                    <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
+                        Más de 10 años distribuyendo herramientas y accesorios para la construcción. Calidad profesional con la rapidez que tu proyecto necesita.
+                    </p>
+                    <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                        <Button size="lg" onClick={() => setIsModalOpen(true)}>
+                            <MessageSquare className="mr-2 h-5 w-5"/> Cotizar Ahora
+                        </Button>
+                        <Button size="lg" variant="outline" className="bg-transparent text-white border-white/80 hover:bg-white hover:text-primary">
+                             Ver Catálogo
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="absolute bottom-8 left-0 right-0 w-full">
+                  <div className="container mx-auto px-4">
+                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                        {heroFeatures.map((feature, index) => (
+                          <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
+                            <feature.icon className="w-8 h-8 text-accent"/>
+                            <div>
+                                <h3 className="font-bold text-white">{feature.title}</h3>
+                                <p className="text-white/80 text-sm">{feature.description}</p>
+                            </div>
+                          </div>
+                        ))}
+                     </div>
+                  </div>
                 </div>
              </div>
           </div>
@@ -362,8 +403,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-    
-
-    
