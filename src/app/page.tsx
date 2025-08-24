@@ -1,12 +1,13 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, BarChart, Instagram, Truck, Clock, PackageCheck } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
+import { UrgentMaterialModal } from '@/components/urgent-material-modal';
 import {
   Carousel,
   CarouselContent,
@@ -16,6 +17,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import Autoplay from "embla-carousel-autoplay";
 import { FacebookIcon } from '@/components/icons';
+import { Instagram } from 'lucide-react';
+
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
@@ -78,8 +81,21 @@ const heroFeatures = [
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUrgentModalOpen, setIsUrgentModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Show the modal only once per session
+      if (!sessionStorage.getItem('urgentModalShown')) {
+        setIsUrgentModalOpen(true);
+        sessionStorage.setItem('urgentModalShown', 'true');
+      }
+    }, 3000); // 3 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
@@ -152,7 +168,7 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-          <div className="relative w-full flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-0 md:h-[80vh]">
+        <div className="relative w-full flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-0 md:h-auto md:aspect-[16/8]">
             <Image
                 src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                 alt="Puntales Metálicos en Obra"
@@ -162,7 +178,7 @@ export default function Home() {
                 priority
             />
             <div className="absolute inset-0 bg-black/70 z-10"></div>
-             <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-16 md:py-0">
+             <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-16 md:py-24">
                 <div className="max-w-4xl">
                     <div className="inline-block bg-primary/20 text-accent px-3 py-1 rounded-full text-sm mb-4 border border-accent/50">
                         ¡Entrega garantizada en menos de 24 horas!
@@ -374,6 +390,7 @@ export default function Home() {
       </footer>
 
       <ContactModal isOpen={isModalOpen} onOpenChange={setIsModalOpen} />
+      <UrgentMaterialModal isOpen={isUrgentModalOpen} onOpenChange={setIsUrgentModalOpen} />
        <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-3">
         <Button
           asChild
