@@ -33,23 +33,6 @@ import {
 import { cn } from '@/lib/utils';
 
 
-// Asigna un tipo JSX para model-viewer
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': MyModelViewerProps;
-    }
-    interface MyModelViewerProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
-        src: string;
-        alt: string;
-        'camera-controls'?: boolean;
-        'auto-rotate'?: boolean;
-        'shadow-intensity'?: string;
-        style?: React.CSSProperties;
-    }
-  }
-}
-
 const SpecItem = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: string | number }) => (
   <div className="flex items-center gap-4 text-left">
     <div className="flex-shrink-0 text-primary bg-primary/10 p-3 rounded-full">
@@ -61,6 +44,22 @@ const SpecItem = ({ icon: Icon, label, value }: { icon: React.ElementType, label
     </div>
   </div>
 );
+
+const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) => {
+    const heightPercentage = ((height - model.minHeight) / (model.maxHeight - model.minHeight)) * 100;
+
+    return (
+        <div className="relative w-full h-[400px] bg-secondary/30 rounded-lg flex justify-center items-center p-4 overflow-hidden">
+            <div className="absolute bottom-0 w-8 bg-gray-300 rounded-t-md" style={{ height: 'calc(100% - 20px)' }}>
+                <div className="absolute bottom-0 w-full bg-primary/60 rounded-t-md" style={{ height: `${heightPercentage}%` }}></div>
+                 {/* Base */}
+                <div className="absolute -bottom-5 w-16 h-5 bg-gray-400 rounded-t-sm left-1/2 -translate-x-1/2"></div>
+                 {/* Top */}
+                <div className="absolute -top-5 w-16 h-5 bg-gray-400 rounded-b-sm left-1/2 -translate-x-1/2"></div>
+            </div>
+        </div>
+    );
+};
 
 export default function PuntalSelector() {
   const [modelIndex, setModelIndex] = useState(0);
@@ -80,7 +79,6 @@ export default function PuntalSelector() {
   useEffect(() => {
     const calculateLoad = (model: Puntal, height: number): number => {
       // The load table is assumed to be sorted by height in ascending order.
-      // We find the first entry where the height is greater than or equal to the current height.
       const sortedTable = [...model.loadTable].sort((a, b) => a.height - b.height);
       for (const entry of sortedTable) {
         if (height <= entry.height) {
@@ -120,15 +118,7 @@ export default function PuntalSelector() {
            <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
               Modelo: {currentModel.model}
           </div>
-          <model-viewer
-              src={currentModel.modelSrc}
-              alt={`Puntal modelo ${currentModel.model}`}
-              camera-controls
-              auto-rotate
-              shadow-intensity="1"
-              style={{ width: '100%', height: '400px', backgroundColor: '#fafafa' }}
-          >
-          </model-viewer>
+          <PuntalAnimation model={currentModel} height={currentHeight} />
         </Card>
          <Card className="shadow-lg">
           <CardHeader>
