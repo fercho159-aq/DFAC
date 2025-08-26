@@ -221,7 +221,7 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-           <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7]">
+           <div className="relative w-full h-screen">
               <Image
                   src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                   alt="Puntales Metálicos en Obra"
@@ -583,3 +583,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
