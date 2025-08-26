@@ -26,8 +26,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#beneficios', label: 'Beneficios' },
-  { href: '#accesorios', label: 'Accesorios' },
   { href: '#modelos', label: 'Modelos' },
+  { href: '#accesorios', label: 'Accesorios' },
   { href: '#galeria', label: 'Galería' },
   { href: '#testimonios', label: 'Testimonios' },
   { href: '#nosotros', label: 'Nosotros' },
@@ -221,39 +221,41 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-        <div className="relative w-full flex flex-col items-center justify-center min-h-[calc(80vh-80px)] md:min-h-0 md:h-auto md:aspect-[16/7]">
-            <Image
-                src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
-                alt="Puntales Metálicos en Obra"
-                fill
-                className="object-cover"
-                data-ai-hint="construction site"
-                priority
-            />
-            <div className="absolute inset-0 bg-black/70 z-10"></div>
-             <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-16 md:py-24">
-                <div className="max-w-4xl">
-                    <div className="inline-block bg-primary/20 text-accent px-3 py-1 rounded-full text-sm mb-4 border border-accent/50">
-                        ¡Entrega garantizada en menos de 24 horas!
-                    </div>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-                        Tus materiales de <span className="text-accent">construcción</span> en tiempo récord
-                    </h1>
-                    <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
-                        Más de 10 años distribuyendo herramientas y accesorios para la construcción. Calidad profesional con la rapidez que tu proyecto necesita.
-                    </p>
-                    <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                        <Button size="lg" onClick={() => setIsModalOpen(true)}>
-                            <MessageSquare className="mr-2 h-5 w-5"/> Cotizar Ahora
-                        </Button>
-                        <Button size="lg" variant="outline" className="bg-transparent text-white border-white/80 hover:bg-white hover:text-primary">
-                             Ver Catálogo
-                        </Button>
-                    </div>
-                </div>
-
-                <div className="w-full max-w-4xl mt-8 md:mt-12 md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+           <div className="relative w-full flex flex-col items-center justify-center min-h-[80vh] md:min-h-0 md:h-auto md:aspect-[16/7]">
+              <Image
+                  src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
+                  alt="Puntales Metálicos en Obra"
+                  fill
+                  className="object-cover"
+                  data-ai-hint="construction site"
+                  priority
+              />
+              <div className="absolute inset-0 bg-black/70 z-10"></div>
+              <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-16 md:py-24">
+                  <div className="max-w-4xl">
+                      <div className="inline-block bg-primary/20 text-accent px-3 py-1 rounded-full text-sm mb-4 border border-accent/50">
+                          ¡Entrega garantizada en menos de 24 horas!
+                      </div>
+                      <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+                          Tus materiales de <span className="text-accent">construcción</span> en tiempo récord
+                      </h1>
+                      <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
+                          Más de 10 años distribuyendo herramientas y accesorios para la construcción. Calidad profesional con la rapidez que tu proyecto necesita.
+                      </p>
+                      <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                          <Button size="lg" onClick={() => setIsModalOpen(true)}>
+                              <MessageSquare className="mr-2 h-5 w-5"/> Cotizar Ahora
+                          </Button>
+                          <Button size="lg" variant="outline" className="bg-transparent text-white border-white/80 hover:bg-white hover:text-primary">
+                               Ver Catálogo
+                          </Button>
+                      </div>
+                  </div>
+              </div>
+           </div>
+           <div className="md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 z-20 w-full">
+              <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left relative -top-12 md:top-0">
                     {heroFeatures.map((feature, index) => (
                       <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
                         <feature.icon className="w-8 h-8 text-accent"/>
@@ -263,10 +265,9 @@ export default function Home() {
                         </div>
                       </div>
                     ))}
-                  </div>
                 </div>
-             </div>
-          </div>
+              </div>
+            </div>
         </section>
 
         <section id="beneficios" className="py-16 md:py-24 px-4">
@@ -289,6 +290,18 @@ export default function Home() {
                     ))}
                 </div>
             </div>
+        </section>
+
+        <section id="modelos" className="py-16 md:py-24 px-4">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
+              <p className="text-muted-foreground mt-2">
+                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
+              </p>
+            </div>
+            <PuntalSelector />
+          </div>
         </section>
 
         <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
@@ -326,19 +339,6 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-        </section>
-
-
-        <section id="modelos" className="py-16 md:py-24 px-4">
-          <div className="container mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
-              <p className="text-muted-foreground mt-2">
-                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
-              </p>
-            </div>
-            <PuntalSelector />
-          </div>
         </section>
         
         <section id="galeria" className="py-16 md:py-24 px-4 bg-secondary/30">
