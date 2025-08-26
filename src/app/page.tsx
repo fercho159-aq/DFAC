@@ -221,7 +221,7 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-           <div className="relative w-full aspect-[1/1] sm:aspect-[16/9] md:aspect-[16/7]">
+           <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[16/7]">
               <Image
                   src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                   alt="Puntales Metálicos en Obra"
@@ -231,7 +231,7 @@ export default function Home() {
                   priority
               />
               <div className="absolute inset-0 bg-black/70 z-10"></div>
-              <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-16 md:py-24">
+              <div className="relative z-20 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full py-12 md:py-24">
                   <div className="max-w-4xl">
                       <div className="inline-block bg-primary/20 text-accent px-3 py-1 rounded-full text-sm mb-4 border border-accent/50">
                           ¡Entrega garantizada en menos de 24 horas!
@@ -239,7 +239,7 @@ export default function Home() {
                       <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
                           Tus materiales de <span className="text-accent">construcción</span> en tiempo récord
                       </h1>
-                      <p className="mt-4 md:text-xl text-white/80 max-w-3xl mx-auto">
+                      <p className="mt-4 text-base md:text-xl text-white/80 max-w-3xl mx-auto">
                           Más de 10 años distribuyendo herramientas y accesorios para la construcción. Calidad profesional con la rapidez que tu proyecto necesita.
                       </p>
                       <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
@@ -251,7 +251,7 @@ export default function Home() {
                           </Button>
                       </div>
 
-                       <div className="mt-16 w-full max-w-5xl mx-auto">
+                       <div className="mt-12 w-full max-w-5xl mx-auto">
                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
                              {heroFeatures.map((feature, index) => (
                                <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
@@ -583,5 +583,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
