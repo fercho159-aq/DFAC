@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Wrench, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import { UrgentMaterialModal } from '@/components/urgent-material-modal';
@@ -15,7 +15,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import Autoplay from "embla-carousel-autoplay";
 import { FacebookIcon } from '@/components/icons';
@@ -26,6 +26,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#beneficios', label: 'Beneficios' },
+  { href: '#accesorios', label: 'Accesorios' },
   { href: '#modelos', label: 'Modelos' },
   { href: '#galeria', label: 'Galería' },
   { href: '#testimonios', label: 'Testimonios' },
@@ -64,6 +65,23 @@ const beneficios = [
     title: 'Durabilidad Comprobada',
     description: 'Fabricados con acero de alta calidad que asegura una larga vida útil y resistencia a la corrosión.'
   }
+];
+
+const featuredProducts = [
+    {
+        name: 'Junta Ortogonal 4 Tornillos en Chapa Prensada',
+        description: 'Asegura uniones firmes y estables a 90 grados en andamios. Esencial para la seguridad estructural.',
+        image: 'https://placehold.co/600x400.png',
+        hint: 'scaffolding clamp',
+        icon: Wrench
+    },
+    {
+        name: 'Junta Giratoria 2 Tornillos',
+        description: 'Permite uniones en ángulos variables con total seguridad. Perfecta para estructuras complejas y versátiles.',
+        image: 'https://placehold.co/600x400.png',
+        hint: 'swivel coupler',
+        icon: Layers
+    }
 ];
 
 const heroFeatures = [
@@ -203,7 +221,7 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-        <div className="relative w-full flex flex-col items-center justify-center min-h-[calc(100vh-80px)] md:min-h-0 md:h-auto md:aspect-[16/8]">
+        <div className="relative w-full flex flex-col items-center justify-center min-h-[calc(80vh-80px)] md:min-h-0 md:h-auto md:aspect-[16/7]">
             <Image
                 src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                 alt="Puntales Metálicos en Obra"
@@ -234,7 +252,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="w-full mt-12 md:mt-16">
+                <div className="w-full max-w-4xl mt-8 md:mt-12 md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
                     {heroFeatures.map((feature, index) => (
                       <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
@@ -273,7 +291,45 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="modelos" className="py-16 md:py-24 px-4 bg-secondary/30">
+        <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
+            <div className="container mx-auto">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h2 className="text-3xl font-bold text-primary">Completa tu Equipo con Nuestros Accesorios</h2>
+                    <p className="text-muted-foreground mt-2">
+                        Asegura la máxima versatilidad y seguridad en tu obra con nuestras juntas de alta resistencia.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    {featuredProducts.map((product, index) => (
+                        <Card key={index} className="overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                            <CardHeader className="p-0">
+                                <Image 
+                                    src={product.image}
+                                    alt={product.name}
+                                    width={600}
+                                    height={400}
+                                    className="object-cover aspect-[3/2] w-full"
+                                    data-ai-hint={product.hint}
+                                />
+                            </CardHeader>
+                            <CardContent className="p-6 flex flex-col flex-grow">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <product.icon className="w-6 h-6 text-primary" />
+                                    <h3 className="text-xl font-bold">{product.name}</h3>
+                                </div>
+                                <CardDescription className="mb-4 flex-grow">{product.description}</CardDescription>
+                                <Button onClick={() => setIsModalOpen(true)} className="w-full mt-auto">
+                                    Solicitar Cotización
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+
+        <section id="modelos" className="py-16 md:py-24 px-4">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
@@ -285,7 +341,7 @@ export default function Home() {
           </div>
         </section>
         
-        <section id="galeria" className="py-16 md:py-24 px-4">
+        <section id="galeria" className="py-16 md:py-24 px-4 bg-secondary/30">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl font-bold text-primary">Nuestros Productos en Acción</h2>
@@ -328,7 +384,7 @@ export default function Home() {
           </div>
         </section>
         
-        <section id="testimonios" className="py-16 md:py-24 px-4 bg-secondary/30">
+        <section id="testimonios" className="py-16 md:py-24 px-4">
             <div className="container mx-auto">
                 <div className="text-center max-w-2xl mx-auto mb-12">
                     <h2 className="text-3xl font-bold text-primary">Lo que dicen nuestros clientes</h2>
@@ -359,7 +415,7 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="nosotros" className="py-16 md:py-24 px-4">
+        <section id="nosotros" className="py-16 md:py-24 px-4 bg-secondary/30">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-in fade-in-0 slide-in-from-left-12 duration-500">
               <h2 className="text-3xl font-bold text-primary mb-4">Más de 10 Años de Experiencia</h2>
@@ -394,7 +450,7 @@ export default function Home() {
         
         
 
-        <section id="clientes" className="py-16 md:py-24 px-4 bg-secondary/30">
+        <section id="clientes" className="py-16 md:py-24 px-4">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl font-bold text-primary">Confían en Nosotros</h2>
@@ -528,5 +584,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
