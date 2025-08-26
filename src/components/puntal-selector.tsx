@@ -29,6 +29,8 @@ import {
   Weight,
   Layers,
   Ruler,
+  ChevronRight,
+  MoveVertical,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -46,16 +48,52 @@ const SpecItem = ({ icon: Icon, label, value }: { icon: React.ElementType, label
 );
 
 const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) => {
-    const heightPercentage = ((height - model.minHeight) / (model.maxHeight - model.minHeight)) * 100;
+    const totalAnimHeight = 350; // Total height of the animation container in px
+    const basePlateHeight = 8;
+    const topPlateHeight = 8;
+    const minVisualHeight = 50; // Minimum visual height for the inner tube
+    const maxVisualHeight = totalAnimHeight - basePlateHeight - topPlateHeight - 20;
+
+    const heightRange = model.maxHeight - model.minHeight;
+    const visualHeightRange = maxVisualHeight - minVisualHeight;
+    
+    // Calculate how far along the height is within its range
+    const heightRatio = (height - model.minHeight) / heightRange;
+    
+    // Apply this ratio to the visual range
+    const innerTubeHeight = minVisualHeight + (heightRatio * visualHeightRange);
+    
+    // Calculate the position for the height indicator
+    const indicatorPosition = innerTubeHeight + basePlateHeight;
 
     return (
-        <div className="relative w-full h-[400px] bg-secondary/30 rounded-lg flex justify-center items-center p-4 overflow-hidden">
-            <div className="absolute bottom-0 w-8 bg-gray-300 rounded-t-md" style={{ height: 'calc(100% - 20px)' }}>
-                <div className="absolute bottom-0 w-full bg-primary/60 rounded-t-md" style={{ height: `${heightPercentage}%` }}></div>
-                 {/* Base */}
-                <div className="absolute -bottom-5 w-16 h-5 bg-gray-400 rounded-t-sm left-1/2 -translate-x-1/2"></div>
-                 {/* Top */}
-                <div className="absolute -top-5 w-16 h-5 bg-gray-400 rounded-b-sm left-1/2 -translate-x-1/2"></div>
+        <div className="relative w-full h-[400px] bg-secondary/20 rounded-lg flex justify-center items-end p-4 overflow-hidden border">
+            {/* Outer tube */}
+            <div className="relative w-16 flex flex-col items-center" style={{ height: `${maxVisualHeight + basePlateHeight}px` }}>
+                <div className="w-full h-full bg-gray-300 rounded-t-md border-x-2 border-t-2 border-gray-400/50"></div>
+                {/* Base Plate */}
+                <div className="absolute -bottom-2 w-24 h-2 bg-gray-400 rounded-md border-2 border-gray-500/80"></div>
+            </div>
+
+            {/* Inner tube with top plate */}
+            <div 
+                className="absolute w-12 flex flex-col items-center transition-all duration-300 ease-out"
+                style={{ height: `${innerTubeHeight}px`, bottom: `${basePlateHeight + 4}px` }}
+            >
+                <div className="w-full h-full bg-primary/60 rounded-t-md border-x-2 border-t-2 border-primary/80"></div>
+                {/* Top Plate */}
+                <div className="absolute -top-2 w-24 h-2 bg-gray-400 rounded-md border-2 border-gray-500/80"></div>
+            </div>
+            
+            {/* Height Indicator */}
+            <div 
+                className="absolute left-4 flex items-center gap-2 transition-all duration-300 ease-out"
+                style={{ bottom: `${indicatorPosition}px` }}
+            >
+                <span className="font-bold text-primary bg-background/80 px-2 py-1 rounded-md shadow-md tabular-nums">
+                    {height.toFixed(0)} cm
+                </span>
+                <div className="flex-grow h-px bg-primary/50 border-t border-dashed border-primary/80 w-16"></div>
             </div>
         </div>
     );
@@ -80,14 +118,16 @@ export default function PuntalSelector() {
     const calculateLoad = (model: Puntal, height: number): number => {
       // The load table is assumed to be sorted by height in ascending order.
       const sortedTable = [...model.loadTable].sort((a, b) => a.height - b.height);
-      for (const entry of sortedTable) {
-        if (height <= entry.height) {
-          return entry.load;
+      
+      // Find the first load entry where the height is sufficient
+      let applicableLoad = sortedTable[sortedTable.length - 1]?.load || 0;
+      for (let i = 0; i < sortedTable.length; i++) {
+        if (height <= sortedTable[i].height) {
+          applicableLoad = sortedTable[i].load;
+          break;
         }
       }
-      // If no entry is found (e.g., height is greater than all table entries),
-      // return the load of the last entry. This handles edge cases.
-      return sortedTable[sortedTable.length - 1]?.load || 0;
+      return applicableLoad;
     };
 
     if (currentModel) {
@@ -99,13 +139,6 @@ export default function PuntalSelector() {
       }
     }
   }, [currentHeight, currentModel, maxLoad]);
-
-  const productFeatures = [
-    { icon: Shield, label: "Acero de Alta Resistencia", value: "Fabricado con acero S235JRH para máxima durabilidad." },
-    { icon: BadgeCheck, label: "Normas de Producción", value: "Cumple con la estricta norma europea UNI EN 729-2: 1996." },
-    { icon: Layers, label: "Sistema Anti-Cizallamiento", value: "Diseño de mano segura para prevenir accidentes durante el ajuste." },
-    { icon: Circle, label: "Placas de Distribución", value: "Bases planas y reforzadas para una óptima distribución de la carga." },
-  ];
 
   if (!currentModel) {
     return <div>Cargando...</div>;
@@ -137,21 +170,7 @@ export default function PuntalSelector() {
       </div>
 
       <div className="flex flex-col gap-8">
-        <Card className="shadow-lg bg-primary/5">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl">
-              <Weight className="w-7 h-7 text-primary" />
-              <span>Capacidad de Carga Resultante</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-6xl md:text-7xl font-bold text-primary tabular-nums" key={highlightKey}>
-              <span className="animate-highlight inline-block">{maxLoad.toLocaleString('es-ES')}</span>
-            </p>
-            <p className="text-muted-foreground mt-1">kg a {currentHeight.toFixed(0)} cm de altura</p>
-          </CardContent>
-        </Card>
-
+        
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="text-xl font-bold tracking-tight text-primary">
@@ -205,6 +224,21 @@ export default function PuntalSelector() {
           </CardContent>
         </Card>
         
+        <Card className="shadow-lg bg-primary/5">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl">
+              <Weight className="w-7 h-7 text-primary" />
+              <span>Capacidad de Carga</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="text-6xl md:text-7xl font-bold text-primary tabular-nums" key={highlightKey}>
+              <span className="animate-highlight inline-block">{maxLoad.toLocaleString('es-ES')}</span>
+            </p>
+            <p className="text-muted-foreground mt-1">kg a {currentHeight.toFixed(0)} cm de altura</p>
+          </CardContent>
+        </Card>
+        
          <Card className="shadow-lg">
           <CardHeader>
             <CardTitle>Tabla de Cargas de {currentModel.model}</CardTitle>
@@ -234,9 +268,10 @@ export default function PuntalSelector() {
             <CardTitle>Características del Producto</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-              {productFeatures.map((feature, index) => (
-                  <SpecItem key={index} icon={feature.icon} label={feature.label} value={feature.value} />
-              ))}
+              <SpecItem icon={Shield} label="Acero de Alta Resistencia" value="Fabricado con acero S235JRH para máxima durabilidad." />
+              <SpecItem icon={BadgeCheck} label="Normas de Producción" value="Cumple con la estricta norma europea UNI EN 729-2: 1996." />
+              <SpecItem icon={Layers} label="Sistema Anti-Cizallamiento" value="Diseño de mano segura para prevenir accidentes durante el ajuste." />
+              <SpecItem icon={Circle} label="Placas de Distribución" value="Bases planas y reforzadas para una óptima distribución de la carga." />
           </CardContent>
         </Card>
       </div>
