@@ -221,7 +221,7 @@ export default function Home() {
 
       <main className="flex-grow">
         <section id="inicio" className="relative bg-black text-white">
-           <div className="relative w-full flex flex-col items-center justify-center min-h-[80vh] md:min-h-0 md:h-auto md:aspect-[16/7]">
+           <div className="relative w-full aspect-[1/1] sm:aspect-[16/9] md:aspect-[16/7]">
               <Image
                   src="/images/4c05f0c3-bb8a-4eed-a528-2f71b8b52594.jpg"
                   alt="Puntales Metálicos en Obra"
@@ -250,24 +250,23 @@ export default function Home() {
                                Ver Catálogo
                           </Button>
                       </div>
+
+                       <div className="mt-16 w-full max-w-5xl mx-auto">
+                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                             {heroFeatures.map((feature, index) => (
+                               <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
+                                 <feature.icon className="w-8 h-8 text-accent"/>
+                                 <div>
+                                     <h3 className="font-bold text-white">{feature.title}</h3>
+                                     <p className="text-white/80 text-sm">{feature.description}</p>
+                                 </div>
+                               </div>
+                             ))}
+                         </div>
+                       </div>
                   </div>
               </div>
            </div>
-           <div className="md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 z-20 w-full">
-              <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left relative -top-12 md:top-0">
-                    {heroFeatures.map((feature, index) => (
-                      <div key={index} className="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-white/20">
-                        <feature.icon className="w-8 h-8 text-accent"/>
-                        <div>
-                            <h3 className="font-bold text-white">{feature.title}</h3>
-                            <p className="text-white/80 text-sm">{feature.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
-            </div>
         </section>
 
         <section id="beneficios" className="py-16 md:py-24 px-4">
@@ -584,3 +583,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
