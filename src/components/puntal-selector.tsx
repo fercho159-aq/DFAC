@@ -70,9 +70,9 @@ const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) =
         <div className="relative w-full h-[400px] rounded-lg flex justify-center items-end p-4 overflow-hidden border">
             {/* Outer tube */}
             <div className="relative w-16 flex flex-col items-center" style={{ height: `${maxVisualHeight + basePlateHeight}px` }}>
-                <div className="w-full h-full bg-gray-300 rounded-t-md border-x-2 border-t-2 border-gray-400/50"></div>
+                <div className="w-full h-full bg-secondary rounded-t-md border-x-2 border-t-2 border-border/50"></div>
                 {/* Base Plate */}
-                <div className="absolute -bottom-2 w-24 h-2 bg-gray-400 rounded-md border-2 border-gray-500/80"></div>
+                <div className="absolute -bottom-2 w-24 h-2 bg-muted rounded-md border-2 border-border/80"></div>
             </div>
 
             {/* Inner tube with top plate */}
@@ -82,7 +82,7 @@ const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) =
             >
                 <div className="w-full h-full bg-primary/60 rounded-t-md border-x-2 border-t-2 border-primary/80"></div>
                 {/* Top Plate */}
-                <div className="absolute -top-2 w-24 h-2 bg-gray-400 rounded-md border-2 border-gray-500/80"></div>
+                <div className="absolute -top-2 w-24 h-2 bg-muted rounded-md border-2 border-border/80"></div>
             </div>
             
             {/* Height Indicator */}
