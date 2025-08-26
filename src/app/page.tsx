@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import { UrgentMaterialModal } from '@/components/urgent-material-modal';
@@ -13,11 +13,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel"
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import Autoplay from "embla-carousel-autoplay";
 import { FacebookIcon } from '@/components/icons';
 import { Instagram } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 
 const navLinks = [
@@ -25,6 +26,7 @@ const navLinks = [
   { href: '#beneficios', label: 'Beneficios' },
   { href: '#modelos', label: 'Modelos' },
   { href: '#nosotros', label: 'Nosotros' },
+  { href: '#testimonios', label: 'Testimonios' },
   { href: '#clientes', label: 'Clientes' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -78,6 +80,28 @@ const heroFeatures = [
         description: "En CDMX y Zona Metropolitana"
     }
 ];
+
+const testimonials = [
+    {
+        name: "Carlos Hernández",
+        company: "Director de Obra, Construmex",
+        comment: "La calidad de los puntales es excepcional y el servicio de entrega en menos de 24 horas es un salvavidas. Totalmente recomendados.",
+        avatar: "https://placehold.co/100x100?text=CH"
+    },
+    {
+        name: "Ana Sofía Robles",
+        company: "Gerente de Compras, Edificaciones Modernas",
+        comment: "DFAC es nuestro proveedor de confianza. Siempre cumplen con los tiempos y la calidad del material nos da la seguridad que necesitamos en cada proyecto.",
+        avatar: "https://placehold.co/100x100?text=AR"
+    },
+    {
+        name: "Jorge Martínez",
+        company: "Residente de Obra",
+        comment: "El sistema de selección en la web me ayudó a encontrar exactamente lo que necesitaba y la cotización fue inmediata. Excelente servicio.",
+        avatar: "https://placehold.co/100x100?text=JM"
+    }
+];
+
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -282,6 +306,37 @@ export default function Home() {
                 </video>
             </div>
           </div>
+        </section>
+        
+        <section id="testimonios" className="py-16 md:py-24 px-4">
+            <div className="container mx-auto">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h2 className="text-3xl font-bold text-primary">Lo que dicen nuestros clientes</h2>
+                    <p className="text-muted-foreground mt-2">
+                        La confianza y satisfacción de nuestros clientes es nuestra mejor carta de presentación.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {testimonials.map((testimonial, index) => (
+                        <Card key={index} className="flex flex-col justify-between p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <CardContent className="p-0">
+                                <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                                <p className="text-muted-foreground mb-6">{testimonial.comment}</p>
+                            </CardContent>
+                            <CardHeader className="p-0 flex flex-row items-center gap-4">
+                                <Avatar>
+                                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint="person portrait"/>
+                                    <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <CardTitle className="text-base font-bold">{testimonial.name}</CardTitle>
+                                    <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                                </div>
+                            </CardHeader>
+                        </Card>
+                    ))}
+                </div>
+            </div>
         </section>
 
         <section id="clientes" className="py-16 md:py-24 px-4 bg-secondary/30">
