@@ -67,7 +67,7 @@ const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) =
     const indicatorPosition = innerTubeHeight + basePlateHeight;
 
     return (
-        <div className="relative w-full h-[400px] bg-secondary/20 rounded-lg flex justify-center items-end p-4 overflow-hidden border">
+        <div className="relative w-full h-[400px] rounded-lg flex justify-center items-end p-4 overflow-hidden border">
             {/* Outer tube */}
             <div className="relative w-16 flex flex-col items-center" style={{ height: `${maxVisualHeight + basePlateHeight}px` }}>
                 <div className="w-full h-full bg-gray-300 rounded-t-md border-x-2 border-t-2 border-gray-400/50"></div>
