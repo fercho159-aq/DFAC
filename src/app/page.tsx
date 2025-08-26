@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Star } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import { UrgentMaterialModal } from '@/components/urgent-material-modal';
@@ -12,6 +12,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -25,8 +27,9 @@ const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#beneficios', label: 'Beneficios' },
   { href: '#modelos', label: 'Modelos' },
-  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#galeria', label: 'Galería' },
   { href: '#testimonios', label: 'Testimonios' },
+  { href: '#nosotros', label: 'Nosotros' },
   { href: '#clientes', label: 'Clientes' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -102,6 +105,14 @@ const testimonials = [
     }
 ];
 
+const galleryImages = [
+    { src: 'https://placehold.co/600x400.png', alt: 'Puntales en obra de gran altura', hint: 'construction site' },
+    { src: 'https://placehold.co/600x400.png', alt: 'Almacén de puntales metálicos', hint: 'construction equipment' },
+    { src: 'https://placehold.co/600x400.png', alt: 'Detalle de puntal de acero reforzado', hint: 'steel props' },
+    { src: 'https://placehold.co/600x400.png', alt: 'Trabajadores ajustando puntales', hint: 'construction workers' },
+    { src: 'https://placehold.co/600x400.png', alt: 'Vista panorámica de cimbra con puntales', hint: 'formwork structure' },
+    { src: 'https://placehold.co/600x400.png', alt: 'Puntales listos para entrega', hint: 'building materials' },
+];
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -273,6 +284,80 @@ export default function Home() {
             <PuntalSelector />
           </div>
         </section>
+        
+        <section id="galeria" className="py-16 md:py-24 px-4">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-primary">Nuestros Productos en Acción</h2>
+              <p className="text-muted-foreground mt-2">
+                Vea la calidad y versatilidad de nuestros puntales en proyectos de construcción reales.
+              </p>
+            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+               plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+              className="w-full max-w-5xl mx-auto"
+            >
+              <CarouselContent>
+                {galleryImages.map((image, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-2">
+                      <Card className="overflow-hidden group">
+                        <CardContent className="p-0 relative">
+                          <Image 
+                            src={image.src} 
+                            alt={image.alt} 
+                            width={600} 
+                            height={400} 
+                            className="object-cover aspect-[3/2] w-full h-full transition-transform duration-300 group-hover:scale-105" 
+                            data-ai-hint={image.hint} 
+                          />
+                           <div className="absolute inset-0 bg-black/20"></div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="ml-12" />
+              <CarouselNext className="mr-12" />
+            </Carousel>
+          </div>
+        </section>
+        
+        <section id="testimonios" className="py-16 md:py-24 px-4 bg-secondary/30">
+            <div className="container mx-auto">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h2 className="text-3xl font-bold text-primary">Lo que dicen nuestros clientes</h2>
+                    <p className="text-muted-foreground mt-2">
+                        La confianza y satisfacción de nuestros clientes es nuestra mejor carta de presentación.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {testimonials.map((testimonial, index) => (
+                        <Card key={index} className="flex flex-col justify-between p-6 shadow-md hover:shadow-xl transition-shadow duration-300 bg-background">
+                            <CardContent className="p-0">
+                                <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                                <p className="text-muted-foreground mb-6">{testimonial.comment}</p>
+                            </CardContent>
+                            <CardHeader className="p-0 flex flex-row items-center gap-4">
+                                <Avatar>
+                                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint="person portrait"/>
+                                    <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <CardTitle className="text-base font-bold">{testimonial.name}</CardTitle>
+                                    <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                                </div>
+                            </CardHeader>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
 
         <section id="nosotros" className="py-16 md:py-24 px-4">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -300,7 +385,6 @@ export default function Home() {
                   muted
                   loop
                   playsInline
-                  controls
                 >
                   Tu navegador no soporta el tag de video.
                 </video>
@@ -308,36 +392,7 @@ export default function Home() {
           </div>
         </section>
         
-        <section id="testimonios" className="py-16 md:py-24 px-4">
-            <div className="container mx-auto">
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <h2 className="text-3xl font-bold text-primary">Lo que dicen nuestros clientes</h2>
-                    <p className="text-muted-foreground mt-2">
-                        La confianza y satisfacción de nuestros clientes es nuestra mejor carta de presentación.
-                    </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {testimonials.map((testimonial, index) => (
-                        <Card key={index} className="flex flex-col justify-between p-6 shadow-md hover:shadow-xl transition-shadow duration-300">
-                            <CardContent className="p-0">
-                                <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                                <p className="text-muted-foreground mb-6">{testimonial.comment}</p>
-                            </CardContent>
-                            <CardHeader className="p-0 flex flex-row items-center gap-4">
-                                <Avatar>
-                                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint="person portrait"/>
-                                    <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                </Avatar>
-                                <div>
-                                    <CardTitle className="text-base font-bold">{testimonial.name}</CardTitle>
-                                    <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                                </div>
-                            </CardHeader>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-        </section>
+        
 
         <section id="clientes" className="py-16 md:py-24 px-4 bg-secondary/30">
           <div className="container mx-auto">
@@ -473,3 +528,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
