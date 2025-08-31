@@ -40,8 +40,6 @@ const clientes = [
   { name: 'Aeropuerto Internacional Felipe Ángeles', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/60/010aeropuerto-felipe-angeles-2.jpg' },
   { name: 'Secretaría de Marina', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/SEMAR_Logo_2019.svg/2560px-SEMAR_Logo_2019.svg.png' },
   { name: 'UNAM', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Escudo-UNAM-escalable.svg/1024px-Escudo-UNAM-escalable.svg.png' },
-  { name: 'Constructora 5', logo: 'https://placehold.co/150x70.png' },
-  { name: 'Constructora 6', logo: 'https://placehold.co/150x70.png' },
 ];
 
 const beneficios = [
@@ -467,10 +465,10 @@ export default function Home() {
             >
               <CarouselContent>
                 {clientes.map((cliente, index) => (
-                  <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
-                    <div className="p-1">
+                  <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                    <div className="p-4">
                       <Card className="flex items-center justify-center p-6 h-32 bg-background">
-                         <Image src={cliente.logo} alt={cliente.name} width={120} height={50} className="object-contain" data-ai-hint="company logo" />
+                         <Image src={cliente.logo} alt={cliente.name} width={150} height={60} className="object-contain max-h-full max-w-full" data-ai-hint="company logo" />
                       </Card>
                     </div>
                   </CarouselItem>
