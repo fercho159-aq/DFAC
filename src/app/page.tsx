@@ -76,7 +76,7 @@ const featuredProducts = [
     {
         name: 'Junta Giratoria 2 Tornillos',
         description: 'Permite uniones en ángulos variables con total seguridad. Perfecta para estructuras complejas y versátiles.',
-        image: 'https://placehold.co/600x400.png',
+        image: 'https://m.media-amazon.com/images/I/511uP1r-GrL._UF894,1000_QL80_.jpg',
         hint: 'swivel coupler',
         icon: Layers
     }
@@ -582,4 +582,5 @@ export default function Home() {
   );
 }
 
+    
     
