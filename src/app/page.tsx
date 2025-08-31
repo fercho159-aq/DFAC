@@ -69,7 +69,7 @@ const featuredProducts = [
     {
         name: 'Junta Ortogonal 4 Tornillos en Chapa Prensada',
         description: 'Asegura uniones firmes y estables a 90 grados en andamios. Esencial para la seguridad estructural.',
-        image: 'https://placehold.co/600x400.png',
+        image: 'https://www.gbmitaly.com/resources/images/giunti/GO04.jpg',
         hint: 'scaffolding clamp',
         icon: Wrench
     },
@@ -581,7 +581,5 @@ export default function Home() {
     </div>
   );
 }
-
-    
 
     
