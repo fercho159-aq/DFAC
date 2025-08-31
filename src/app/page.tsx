@@ -122,12 +122,12 @@ const testimonials = [
 ];
 
 const galleryImages = [
-    { src: 'https://placehold.co/600x400.png', alt: 'Puntales en obra de gran altura', hint: 'construction site' },
-    { src: 'https://placehold.co/600x400.png', alt: 'Almacén de puntales metálicos', hint: 'construction equipment' },
-    { src: 'https://placehold.co/600x400.png', alt: 'Detalle de puntal de acero reforzado', hint: 'steel props' },
-    { src: 'https://placehold.co/600x400.png', alt: 'Trabajadores ajustando puntales', hint: 'construction workers' },
-    { src: 'https://placehold.co/600x400.png', alt: 'Vista panorámica de cimbra con puntales', hint: 'formwork structure' },
-    { src: 'https://placehold.co/600x400.png', alt: 'Puntales listos para entrega', hint: 'building materials' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.08 PM.jpeg', alt: 'Puntales en obra de gran altura', hint: 'construction site' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.07 PM.jpeg', alt: 'Almacén de puntales metálicos', hint: 'construction equipment' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.06 PM.jpeg', alt: 'Detalle de puntal de acero reforzado', hint: 'steel props' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.05 PM.jpeg', alt: 'Trabajadores ajustando puntales', hint: 'construction workers' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.04 PM.jpeg', alt: 'Vista panorámica de cimbra con puntales', hint: 'formwork structure' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.03 PM.jpeg', alt: 'Puntales listos para entrega', hint: 'building materials' },
 ];
 
 export default function Home() {
