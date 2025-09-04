@@ -83,28 +83,28 @@ const featuredProducts = [
     {
         name: 'Tirante tipo moño con rondana',
         description: 'Moño para cimbra con rondana de neopreno, de acero de alto carbón (5.8 mm), carga de 1,350 kg y resistencia de 2,200 kg.',
-        image: 'https://placehold.co/600x400',
+        image: '/images/Productos/moñodeneopreno.webp',
         hint: 'formwork tie',
         icon: Anchor
     },
     {
         name: 'Tirante tipo moño',
         description: 'Moño para cimbra de acero de alto carbón (5.8 mm), con capacidad de carga de 1,350 kg y resistencia máxima de 2,200 kg. COSTO POR ATADO.',
-        image: 'https://placehold.co/600x400',
+        image: '/images/Productos/Tirantetipomoño.webp',
         hint: 'formwork anchor',
         icon: Anchor
     },
     {
         name: 'Banda de PVC negra ojillada',
         description: 'Sello retenedor de agua de 25 ml. Cinta de PVC con bulbo central y laterales estriados para máxima adherencia.',
-        image: 'https://placehold.co/600x400',
+        image: '/images/Productos/BandadePVCnegraojillada.webp',
         hint: 'pvc waterstop',
         icon: Waves
     },
     {
         name: 'Viga H-20 para Cimbra',
         description: 'Fabricada con madera de alta calidad y un diseño robusto, nuestra viga H-20 garantiza la máxima eficiencia y seguridad en sus proyectos de construcción. El tapón protector integrado aumenta su durabilidad.',
-        image: 'https://placehold.co/600x400',
+        image: '/images/Productos/Vigas.webp',
         hint: 'h20 beam',
         icon: Building2
     }
@@ -354,7 +354,7 @@ export default function Home() {
             </div>
         </section>
         
-        <section id="galeria" className="py-16 md:py-24 px-4 bg-secondary/30">
+        <section id="galeria" className="py-12 md:py-16 px-4 bg-secondary/30">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl font-bold text-primary">Nuestros Productos en Acción</h2>
