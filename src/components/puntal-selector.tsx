@@ -29,8 +29,6 @@ import {
   Weight,
   Layers,
   Ruler,
-  ChevronRight,
-  MoveVertical,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -67,7 +65,7 @@ const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) =
     const indicatorPosition = innerTubeHeight + basePlateHeight;
 
     return (
-        <div className="relative w-full h-[400px] rounded-lg flex justify-center items-end p-4 overflow-hidden border">
+        <div className="relative w-full h-[400px] rounded-lg flex justify-center items-end p-4 overflow-hidden border bg-background">
             {/* Outer tube */}
             <div className="relative w-16 flex flex-col items-center" style={{ height: `${maxVisualHeight + basePlateHeight}px` }}>
                 <div className="w-full h-full bg-secondary rounded-t-md border-x-2 border-t-2 border-border/50"></div>
@@ -80,7 +78,7 @@ const PuntalAnimation = ({ model, height }: { model: Puntal, height: number }) =
                 className="absolute w-12 flex flex-col items-center transition-all duration-300 ease-out"
                 style={{ height: `${innerTubeHeight}px`, bottom: `${basePlateHeight + 4}px` }}
             >
-                <div className="w-full h-full bg-primary/60 rounded-t-md border-x-2 border-t-2 border-primary/80"></div>
+                <div className="w-full h-full bg-primary/80 rounded-t-md border-x-2 border-t-2 border-primary/80"></div>
                 {/* Top Plate */}
                 <div className="absolute -top-2 w-24 h-2 bg-muted rounded-md border-2 border-border/80"></div>
             </div>
@@ -147,13 +145,13 @@ export default function PuntalSelector() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <div className="flex flex-col gap-6 lg:sticky top-28">
-        <Card className="overflow-hidden shadow-xl border-2 border-border/60 animate-in fade-in duration-500" key={currentModel.id}>
+        <Card className="overflow-hidden shadow-xl border-2 border-border/60 animate-in fade-in duration-500 bg-card" key={currentModel.id}>
            <div className="bg-secondary/40 p-2 text-center font-bold text-primary">
               Modelo: {currentModel.model}
           </div>
           <PuntalAnimation model={currentModel} height={currentHeight} />
         </Card>
-         <Card className="shadow-lg">
+         <Card className="shadow-lg bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-3 text-xl">
               <Ruler className="w-6 h-6 text-primary" />
@@ -171,10 +169,10 @@ export default function PuntalSelector() {
 
       <div className="flex flex-col gap-8">
         
-        <Card className="shadow-lg">
+        <Card className="shadow-lg bg-card">
           <CardHeader>
-            <CardTitle className="text-xl font-bold tracking-tight text-primary">
-              1. Selecciona el Modelo
+            <CardTitle className="text-xl font-bold tracking-tight">
+              <span className='text-primary mr-2'>1.</span> Selecciona el Modelo
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -182,12 +180,12 @@ export default function PuntalSelector() {
                 value={String(modelIndex)}
                 onValueChange={(value) => setModelIndex(Number(value))}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full text-base py-6">
                   <SelectValue placeholder="Selecciona un modelo" />
                 </SelectTrigger>
                 <SelectContent>
                   {puntalesData.map((puntal, index) => (
-                    <SelectItem key={puntal.id} value={String(index)}>
+                    <SelectItem key={puntal.id} value={String(index)} className="text-base py-2">
                       {puntal.model}
                     </SelectItem>
                   ))}
@@ -196,17 +194,17 @@ export default function PuntalSelector() {
           </CardContent>
         </Card>
         
-        <Card className="shadow-lg">
+        <Card className="shadow-lg bg-card">
           <CardHeader>
-            <CardTitle className="text-xl font-bold tracking-tight text-primary">
-              2. Ajusta la Altura
+            <CardTitle className="text-xl font-bold tracking-tight">
+              <span className='text-primary mr-2'>2.</span> Ajusta la Altura
             </CardTitle>
           </CardHeader>
           <CardContent>
               <div className="flex justify-between items-baseline mb-3">
                 <label htmlFor="height-slider" className="text-base font-medium">Altura de trabajo:</label>
                 <p className="text-2xl font-bold text-primary tabular-nums">
-                  {currentHeight.toFixed(0)} <span className="text-sm font-normal">cm</span>
+                  {currentHeight.toFixed(0)} <span className="text-sm font-normal text-muted-foreground">cm</span>
                 </p>
               </div>
               <Slider
@@ -224,7 +222,7 @@ export default function PuntalSelector() {
           </CardContent>
         </Card>
         
-        <Card className="shadow-lg bg-primary/5">
+        <Card className="shadow-lg bg-primary/10 border-primary/30">
           <CardHeader>
             <CardTitle className="flex items-center justify-center gap-3 text-xl md:text-2xl">
               <Weight className="w-7 h-7 text-primary" />
@@ -239,9 +237,9 @@ export default function PuntalSelector() {
           </CardContent>
         </Card>
         
-         <Card className="shadow-lg">
+         <Card className="shadow-lg bg-card">
           <CardHeader>
-            <CardTitle>Tabla de Cargas de {currentModel.model}</CardTitle>
+            <CardTitle>Tabla de Cargas: <span className='text-primary'>{currentModel.model}</span></CardTitle>
           </CardHeader>
           <CardContent>
              <Table>
@@ -253,25 +251,13 @@ export default function PuntalSelector() {
               </TableHeader>
               <TableBody>
                 {currentModel.loadTable.map((entry) => (
-                  <TableRow key={entry.height} className={cn(currentHeight <= entry.height && maxLoad === entry.load ? "bg-primary/10 font-bold" : "")}>
+                  <TableRow key={entry.height} className={cn(currentHeight <= entry.height && maxLoad === entry.load ? "bg-primary/10 font-bold text-primary" : "")}>
                     <TableCell>Hasta {entry.height}</TableCell>
-                    <TableCell className="text-right">{entry.load.toLocaleString('es-ES')}</TableCell>
+                    <TableCell className="text-right font-mono">{entry.load.toLocaleString('es-ES')}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-lg">
-          <CardHeader>
-            <CardTitle>Características del Producto</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-              <SpecItem icon={Shield} label="Acero de Alta Resistencia" value="Fabricado con acero S235JRH para máxima durabilidad." />
-              <SpecItem icon={BadgeCheck} label="Normas de Producción" value="Cumple con la estricta norma europea UNI EN 729-2: 1996." />
-              <SpecItem icon={Layers} label="Sistema Anti-Cizallamiento" value="Diseño de mano segura para prevenir accidentes durante el ajuste." />
-              <SpecItem icon={Circle} label="Placas de Distribución" value="Bases planas y reforzadas para una óptima distribución de la carga." />
           </CardContent>
         </Card>
       </div>

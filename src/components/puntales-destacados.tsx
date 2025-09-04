@@ -22,15 +22,16 @@ interface MyModelViewerProps extends React.DetailedHTMLProps<React.HTMLAttribute
   'auto-rotate'?: boolean;
   'shadow-intensity'?: string;
   'ar'?: boolean;
+  style?: React.CSSProperties;
 }
 
 
-const PuntalCard = ({ puntal, onQuoteClick }: { puntal: Puntal, onQuoteClick: () => void }) => {
+const PuntalCard = ({ puntal, onQuoteClick }: { puntal: Puntal, onQuoteClick: (id: string) => void }) => {
   const maxLoad = puntal.loadTable.reduce((max, entry) => (entry.load > max ? entry.load : max), 0);
   
   return (
-    <Card className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border-2 border-transparent hover:border-primary">
-      <CardHeader className="p-0 bg-secondary/30">
+    <Card className="flex flex-col overflow-hidden bg-card shadow-lg hover:shadow-primary/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-transparent hover:border-primary/50">
+      <CardHeader className="p-0">
         <model-viewer
             src={puntal.modelSrc}
             alt={puntal.model}
@@ -44,16 +45,16 @@ const PuntalCard = ({ puntal, onQuoteClick }: { puntal: Puntal, onQuoteClick: ()
       <CardContent className="p-6 flex flex-col flex-grow">
         <CardTitle className="mb-2 text-xl font-bold">{puntal.model}</CardTitle>
         <div className="space-y-3 mb-6 mt-2 text-sm flex-grow">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 text-muted-foreground">
             <ArrowUpToLine className="w-5 h-5 text-primary" />
-            <span>Altura Máx: <span className="font-semibold">{puntal.maxHeight} cm</span></span>
+            <span>Altura Máx: <span className="font-semibold text-foreground">{puntal.maxHeight} cm</span></span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 text-muted-foreground">
             <Weight className="w-5 h-5 text-primary" />
-            <span>Carga Máx: <span className="font-semibold">{maxLoad.toLocaleString('es-ES')} kg</span></span>
+            <span>Carga Máx: <span className="font-semibold text-foreground">{maxLoad.toLocaleString('es-ES')} kg</span></span>
           </div>
         </div>
-        <Button onClick={onQuoteClick} className="w-full mt-auto">
+        <Button onClick={() => onQuoteClick(puntal.id)} className="w-full mt-auto">
           Ver Detalles y Cotizar <MoveRight className="ml-2 h-4 w-4" />
         </Button>
       </CardContent>
@@ -63,20 +64,24 @@ const PuntalCard = ({ puntal, onQuoteClick }: { puntal: Puntal, onQuoteClick: ()
 
 
 export const PuntalesDestacados = () => {
-  const handleQuoteClick = () => {
+  const handleQuoteClick = (puntalId: string) => {
     const selectorSection = document.getElementById('modelos');
+    
+    // You can use the puntalId to pre-select the model in the selector if you implement that logic
+    // For now, it just scrolls
+    
     if (selectorSection) {
       selectorSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="puntales-destacados" className="py-16 md:py-24 px-4 bg-background">
+    <section id="puntales-destacados" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold text-primary">Nuestros Modelos de Puntales</h2>
-          <p className="text-muted-foreground mt-2">
-            Soluciones robustas y seguras para cada tipo de proyecto. Encuentra el puntal ideal para tus necesidades.
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold">Nuestros Modelos de Puntales</h2>
+          <p className="text-muted-foreground mt-4 text-lg">
+            Soluciones robustas y seguras para cada tipo de proyecto. Fabricados bajo norma europea, garantizan máxima durabilidad y resistencia.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
