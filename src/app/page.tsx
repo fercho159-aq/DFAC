@@ -188,7 +188,7 @@ export default function Home() {
       <header className="py-4 px-4 md:px-8 border-b border-border/40 bg-background/80 backdrop-blur-lg sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
           <a href="#inicio" onClick={(e) => handleNavLinkClick(e, '#inicio')} className="flex items-center gap-3">
-            <Image src="/images/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto invert" />
+            <Image src="/images/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto" />
             <span className="sr-only">DFAC Accesorios para Cimbras</span>
           </a>
           <nav className="hidden lg:flex items-center gap-6">
@@ -234,9 +234,9 @@ export default function Home() {
       </header>
 
       <main className="flex-grow">
-        <section id="inicio" className="w-full">
+        <section id="inicio" className="w-full bg-card">
            <div className="container mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-16 lg:py-0">
+              <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-80px)] py-16 lg:py-0">
                   <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                       <h1 className="text-4xl md:text-6xl font-bold tracking-tighter !leading-tight">
                           La <span className="text-primary">Solución Rápida</span> y Segura para tu Construcción
@@ -348,7 +348,7 @@ export default function Home() {
                   <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4 pl-8">
                     <div className="p-1">
                       <div className="flex items-center justify-center p-6 h-32 bg-background rounded-lg grayscale hover:grayscale-0 transition-all duration-300">
-                         <Image src={cliente.logo} alt={cliente.name} width={150} height={60} className="object-contain max-h-full max-w-full invert" data-ai-hint="company logo" />
+                         <Image src={cliente.logo} alt={cliente.name} width={150} height={60} className="object-contain max-h-full max-w-full" data-ai-hint="company logo" />
                       </div>
                     </div>
                   </CarouselItem>
@@ -485,7 +485,7 @@ export default function Home() {
         <div className="container mx-auto py-12 px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left items-start">
             <div className="md:col-span-1">
-               <Image src="/images/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto mx-auto md:mx-0 invert" />
+               <Image src="/images/Recurso-2.png.webp" alt="DFAC Accesorios para Cimbras Logo" width={180} height={40} className="h-10 w-auto mx-auto md:mx-0" />
               <p className="text-sm mt-4 text-muted-foreground">Cuauhtémoc 105, San Pedro Iztacalco, Iztacalco, 08220 Ciudad de México, CDMX</p>
               <p className="text-sm text-muted-foreground">ventas@cimbrayaccesorios.com.mx</p>
             </div>

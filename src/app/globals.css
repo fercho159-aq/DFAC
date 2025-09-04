@@ -4,30 +4,29 @@
 
 @layer base {
   :root {
-    --background: 220 13% 18%; /* Dark Cool Gray */
-    --foreground: 210 40% 98%; /* Almost White */
-    --card: 220 13% 22%;
-    --card-foreground: 210 40% 98%;
-    --popover: 220 13% 18%;
-    --popover-foreground: 210 40% 98%;
+    --background: 0 0% 100%; /* White */
+    --foreground: 220 13% 18%; /* Dark Cool Gray */
+    --card: 220 20% 98%;
+    --card-foreground: 220 13% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 18%;
     --primary: 21 91% 57%; /* Vibrant Orange */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 220 13% 30%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 220 13% 40%;
-    --muted-foreground: 210 40% 80%;
+    --primary-foreground: 210 40% 98%; /* Almost White */
+    --secondary: 220 13% 94%;
+    --secondary-foreground: 220 13% 25%;
+    --muted: 220 13% 90%;
+    --muted-foreground: 220 13% 40%;
     --accent: 21 91% 57%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 63% 31%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 13% 30%;
-    --input: 220 13% 30%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
     --ring: 21 91% 57%;
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Kept for potential future use, but the base is now dark */
     --background: 220 13% 18%;
     --foreground: 210 40% 98%;
     --card: 220 13% 22%;

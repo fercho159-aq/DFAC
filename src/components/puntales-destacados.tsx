@@ -31,7 +31,7 @@ const PuntalCard = ({ puntal, onQuoteClick }: { puntal: Puntal, onQuoteClick: (i
   
   return (
     <Card className="flex flex-col overflow-hidden bg-card shadow-lg hover:shadow-primary/20 transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-transparent hover:border-primary/50">
-      <CardHeader className="p-0">
+      <CardHeader className="p-0 bg-background">
         <model-viewer
             src={puntal.modelSrc}
             alt={puntal.model}
