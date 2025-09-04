@@ -150,12 +150,12 @@ const testimonials = [
 ];
 
 const galleryImages = [
-    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.08 PM.jpeg', alt: 'Puntales en obra de gran altura', hint: 'construction site' },
-    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.07 PM.jpeg', alt: 'Almacén de puntales metálicos', hint: 'construction equipment' },
-    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.06 PM.jpeg', alt: 'Detalle de puntal de acero reforzado', hint: 'steel props' },
-    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.05 PM.jpeg', alt: 'Trabajadores ajustando puntales', hint: 'construction workers' },
-    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.04 PM.jpeg', alt: 'Vista panorámica de cimbra con puntales', hint: 'formwork structure' },
-    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.03 PM.jpeg', alt: 'Puntales listos para entrega', hint: 'building materials' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.08 PM.jpeg', alt: 'Puntales en obra de gran altura', hint: 'construction site', className: 'col-span-12 sm:col-span-6 md:col-span-4' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.07 PM.jpeg', alt: 'Almacén de puntales metálicos', hint: 'construction equipment', className: 'col-span-12 sm:col-span-6 md:col-span-4' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.06 PM.jpeg', alt: 'Detalle de puntal de acero reforzado', hint: 'steel props', className: 'col-span-12 sm:col-span-6 md:col-span-4' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.05 PM.jpeg', alt: 'Trabajadores ajustando puntales', hint: 'construction workers', className: 'col-span-12 sm:col-span-6' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.04 PM.jpeg', alt: 'Vista panorámica de cimbra con puntales', hint: 'formwork structure', className: 'col-span-12 sm:col-span-6' },
+    { src: '/images/Galeria/WhatsApp Image 2025-08-27 at 1.27.03 PM.jpeg', alt: 'Puntales listos para entrega', hint: 'building materials', className: 'col-span-12' },
 ];
 
 export default function Home() {
@@ -362,38 +362,24 @@ export default function Home() {
                 Vea la calidad y versatilidad de nuestros puntales en proyectos de construcción reales.
               </p>
             </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-               plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
-              className="w-full max-w-5xl mx-auto"
-            >
-              <CarouselContent>
-                {galleryImages.map((image, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-2">
-                      <Card className="overflow-hidden group">
-                        <CardContent className="p-0 relative">
-                          <Image 
-                            src={image.src} 
-                            alt={image.alt} 
-                            width={600} 
-                            height={400} 
-                            className="object-cover aspect-[3/2] w-full h-full transition-transform duration-300 group-hover:scale-105" 
-                            data-ai-hint={image.hint} 
-                          />
-                           <div className="absolute inset-0 bg-black/20"></div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="ml-12" />
-              <CarouselNext className="mr-12" />
-            </Carousel>
+            <div className="grid grid-cols-12 gap-4">
+              {galleryImages.map((image, index) => (
+                <div key={index} className={cn("overflow-hidden rounded-lg group relative", image.className)}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={800}
+                    height={800}
+                    className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
+                    data-ai-hint={image.hint}
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                  <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="font-bold">{image.alt}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
         
