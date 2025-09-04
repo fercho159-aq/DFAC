@@ -256,7 +256,7 @@ export default function Home() {
                           </Button>
                       </div>
                   </div>
-                  <div className="w-full h-screen lg:h-[500px] rounded-xl overflow-hidden shadow-2xl shadow-primary/20">
+                  <div className="w-full h-[300px] lg:h-[500px] rounded-xl overflow-hidden shadow-2xl shadow-primary/20">
                     <video
                       className="w-full h-full object-cover"
                       src="/videos/VIDEO-2025-08-05-12-37-33.mp4"
