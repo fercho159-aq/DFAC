@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Wrench, Layers, Anchor, Waves } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Wrench, Layers, Anchor, Waves, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import { UrgentMaterialModal } from '@/components/urgent-material-modal';
@@ -100,6 +100,13 @@ const featuredProducts = [
         image: 'https://placehold.co/600x400',
         hint: 'pvc waterstop',
         icon: Waves
+    },
+    {
+        name: 'Viga H-20 para Cimbra',
+        description: 'Fabricada con madera de alta calidad y un diseño robusto, nuestra viga H-20 garantiza la máxima eficiencia y seguridad en sus proyectos de construcción. El tapón protector integrado aumenta su durabilidad.',
+        image: 'https://placehold.co/600x400',
+        hint: 'h20 beam',
+        icon: Building2
     }
 ];
 
@@ -447,6 +454,18 @@ export default function Home() {
             </Carousel>
           </div>
         </section>
+        
+        <section id="modelos" className="py-16 md:py-24 px-4">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
+              <p className="text-muted-foreground mt-2">
+                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
+              </p>
+            </div>
+            <PuntalSelector />
+          </div>
+        </section>
 
         <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
             <div className="container mx-auto">
@@ -483,18 +502,6 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-        </section>
-        
-        <section id="modelos" className="py-16 md:py-24 px-4">
-          <div className="container mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
-              <p className="text-muted-foreground mt-2">
-                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
-              </p>
-            </div>
-            <PuntalSelector />
-          </div>
         </section>
 
         <section id="contacto" className="py-16 md:py-24 px-4 text-center bg-primary text-primary-foreground">
