@@ -26,12 +26,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#beneficios', label: 'Beneficios' },
-  { href: '#modelos', label: 'Modelos' },
   { href: '#accesorios', label: 'Accesorios' },
   { href: '#galeria', label: 'Galería' },
   { href: '#testimonios', label: 'Testimonios' },
   { href: '#nosotros', label: 'Nosotros' },
   { href: '#clientes', label: 'Clientes' },
+  { href: '#modelos', label: 'Cotizador' },
   { href: '#contacto', label: 'Contacto' },
 ];
 
@@ -289,18 +289,6 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="modelos" className="py-16 md:py-24 px-4">
-          <div className="container mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
-              <p className="text-muted-foreground mt-2">
-                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
-              </p>
-            </div>
-            <PuntalSelector />
-          </div>
-        </section>
-
         <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
             <div className="container mx-auto">
                 <div className="text-center max-w-2xl mx-auto mb-12">
@@ -478,6 +466,18 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="modelos" className="py-16 md:py-24 px-4">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
+              <p className="text-muted-foreground mt-2">
+                Selecciona el modelo que necesitas y ajusta la altura para ver la capacidad de carga. ¡Obtén una cotización al instante!
+              </p>
+            </div>
+            <PuntalSelector />
+          </div>
+        </section>
+
         <section id="contacto" className="py-16 md:py-24 px-4 text-center bg-primary text-primary-foreground">
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">¿Listo para Optimizar tu Obra?</h2>
@@ -582,5 +582,4 @@ export default function Home() {
   );
 }
 
-    
     
