@@ -25,12 +25,12 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
+  { href: '#accesorios', label: 'Accesorios' },
   { href: '#beneficios', label: 'Beneficios' },
   { href: '#galeria', label: 'Galería' },
   { href: '#testimonios', label: 'Testimonios' },
   { href: '#nosotros', label: 'Nosotros' },
   { href: '#clientes', label: 'Clientes' },
-  { href: '#accesorios', label: 'Accesorios' },
   { href: '#modelos', label: 'Cotizador' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -295,6 +295,43 @@ export default function Home() {
            </div>
         </section>
 
+        <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
+            <div className="container mx-auto">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h2 className="text-3xl font-bold text-primary">Completa tu Equipo con Nuestros Accesorios</h2>
+                    <p className="text-muted-foreground mt-2">
+                        Asegura la máxima versatilidad y seguridad en tu obra con nuestras juntas de alta resistencia.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {featuredProducts.map((product, index) => (
+                        <Card key={index} className="overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                            <CardHeader className="p-0">
+                                <Image 
+                                    src={product.image}
+                                    alt={product.name}
+                                    width={600}
+                                    height={400}
+                                    className="object-cover aspect-[3/2] w-full"
+                                    data-ai-hint={product.hint}
+                                />
+                            </CardHeader>
+                            <CardContent className="p-6 flex flex-col flex-grow">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <product.icon className="w-6 h-6 text-primary" />
+                                    <h3 className="text-xl font-bold">{product.name}</h3>
+                                </div>
+                                <CardDescription className="mb-4 flex-grow">{product.description}</CardDescription>
+                                <Button onClick={() => setIsModalOpen(true)} className="w-full mt-auto">
+                                    Solicitar Cotización
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+
         <section id="beneficios" className="py-16 md:py-24 px-4">
             <div className="container mx-auto">
                 <div className="text-center max-w-2xl mx-auto mb-12">
@@ -467,43 +504,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
-            <div className="container mx-auto">
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <h2 className="text-3xl font-bold text-primary">Completa tu Equipo con Nuestros Accesorios</h2>
-                    <p className="text-muted-foreground mt-2">
-                        Asegura la máxima versatilidad y seguridad en tu obra con nuestras juntas de alta resistencia.
-                    </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {featuredProducts.map((product, index) => (
-                        <Card key={index} className="overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                            <CardHeader className="p-0">
-                                <Image 
-                                    src={product.image}
-                                    alt={product.name}
-                                    width={600}
-                                    height={400}
-                                    className="object-cover aspect-[3/2] w-full"
-                                    data-ai-hint={product.hint}
-                                />
-                            </CardHeader>
-                            <CardContent className="p-6 flex flex-col flex-grow">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <product.icon className="w-6 h-6 text-primary" />
-                                    <h3 className="text-xl font-bold">{product.name}</h3>
-                                </div>
-                                <CardDescription className="mb-4 flex-grow">{product.description}</CardDescription>
-                                <Button onClick={() => setIsModalOpen(true)} className="w-full mt-auto">
-                                    Solicitar Cotización
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-        </section>
-
         <section id="contacto" className="py-16 md:py-24 px-4 text-center bg-primary text-primary-foreground">
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">¿Listo para Optimizar tu Obra?</h2>
@@ -607,5 +607,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
