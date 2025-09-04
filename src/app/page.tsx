@@ -357,6 +357,37 @@ export default function Home() {
         </section>
 
         <PuntalesDestacados />
+
+        <section id="clientes" className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold">Confían en Nosotros</h2>
+              <p className="text-muted-foreground mt-4 text-lg">
+                Empresas y proyectos líderes en la industria de la construcción respaldan la calidad y seguridad de los productos DFAC.
+              </p>
+            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
+              className="w-full max-w-6xl mx-auto"
+            >
+              <CarouselContent className="-ml-8">
+                {clientes.map((cliente, index) => (
+                  <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4 pl-8">
+                    <div className="p-1">
+                      <div className="flex items-center justify-center p-6 h-32 bg-background rounded-lg grayscale hover:grayscale-0 transition-all duration-300">
+                         <Image src={cliente.logo} alt={cliente.name} width={150} height={60} className="object-contain max-h-full max-w-full invert" data-ai-hint="company logo" />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+        </section>
         
         <section id="nosotros" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -396,37 +427,6 @@ export default function Home() {
               </p>
             </div>
             <PuntalSelector />
-          </div>
-        </section>
-
-        <section id="clientes" className="py-16 md:py-24 bg-card">
-          <div className="container mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold">Confían en Nosotros</h2>
-              <p className="text-muted-foreground mt-4 text-lg">
-                Empresas y proyectos líderes en la industria de la construcción respaldan la calidad y seguridad de los productos DFAC.
-              </p>
-            </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[Autoplay({ delay: 3000, stopOnInteraction: true })]}
-              className="w-full max-w-6xl mx-auto"
-            >
-              <CarouselContent className="-ml-8">
-                {clientes.map((cliente, index) => (
-                  <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/4 pl-8">
-                    <div className="p-1">
-                      <div className="flex items-center justify-center p-6 h-32 bg-background rounded-lg grayscale hover:grayscale-0 transition-all duration-300">
-                         <Image src={cliente.logo} alt={cliente.name} width={150} height={60} className="object-contain max-h-full max-w-full invert" data-ai-hint="company logo" />
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
           </div>
         </section>
         
@@ -565,5 +565,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
