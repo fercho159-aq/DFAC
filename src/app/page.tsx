@@ -21,10 +21,12 @@ import Autoplay from "embla-carousel-autoplay";
 import { FacebookIcon } from '@/components/icons';
 import { Instagram } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { PuntalesDestacados } from '@/components/puntales-destacados';
 
 
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
+  { href: '#puntales-destacados', label: 'Puntales' },
   { href: '#accesorios', label: 'Accesorios' },
   { href: '#beneficios', label: 'Beneficios' },
   { href: '#galeria', label: 'Galería' },
@@ -295,6 +297,8 @@ export default function Home() {
            </div>
         </section>
 
+        <PuntalesDestacados />
+
         <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
             <div className="container mx-auto">
                 <div className="text-center max-w-2xl mx-auto mb-12">
@@ -478,7 +482,7 @@ export default function Home() {
           </div>
         </section>
         
-        <section id="modelos" className="py-16 md:py-24 px-4">
+        <section id="modelos" className="py-16 md:py-24 px-4 bg-secondary/30">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl font-bold text-primary">Encuentra tu Puntal y Cotiza</h2>
