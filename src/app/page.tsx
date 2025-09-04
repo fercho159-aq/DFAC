@@ -327,37 +327,6 @@ export default function Home() {
             </div>
         </section>
         
-        <section id="galeria" className="py-12 md:py-16">
-          <div className="container mx-auto">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold">Nuestros Productos en Acción</h2>
-              <p className="text-muted-foreground mt-4 text-lg">
-                Vea la calidad y versatilidad de nuestros puntales en proyectos de construcción reales.
-              </p>
-            </div>
-            <div className="grid grid-cols-12 gap-4">
-              {galleryImages.map((image, index) => (
-                <div key={index} className={cn("overflow-hidden rounded-lg group relative", image.className)}>
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={800}
-                    height={800}
-                    className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
-                    data-ai-hint={image.hint}
-                  />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
-                  <div className="absolute bottom-4 left-4 text-white p-2 bg-black/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="font-bold text-sm">{image.alt}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <PuntalesDestacados />
-
         <section id="clientes" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -388,6 +357,37 @@ export default function Home() {
             </Carousel>
           </div>
         </section>
+
+        <section id="galeria" className="py-12 md:py-16">
+          <div className="container mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold">Nuestros Productos en Acción</h2>
+              <p className="text-muted-foreground mt-4 text-lg">
+                Vea la calidad y versatilidad de nuestros puntales en proyectos de construcción reales.
+              </p>
+            </div>
+            <div className="grid grid-cols-12 gap-4">
+              {galleryImages.map((image, index) => (
+                <div key={index} className={cn("overflow-hidden rounded-lg group relative", image.className)}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={800}
+                    height={800}
+                    className="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-105"
+                    data-ai-hint={image.hint}
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
+                  <div className="absolute bottom-4 left-4 text-white p-2 bg-black/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="font-bold text-sm">{image.alt}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <PuntalesDestacados />
         
         <section id="nosotros" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -565,3 +565,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
