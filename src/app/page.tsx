@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import PuntalSelector from '@/components/puntal-selector';
-import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Wrench, Layers } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, CheckCircle, Shield, Users, Truck, Clock, PackageCheck, Quote, Wrench, Layers, Anchor, Waves } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ContactModal } from '@/components/contact-modal';
 import { UrgentMaterialModal } from '@/components/urgent-material-modal';
@@ -26,11 +26,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#beneficios', label: 'Beneficios' },
-  { href: '#accesorios', label: 'Accesorios' },
   { href: '#galeria', label: 'Galería' },
   { href: '#testimonios', label: 'Testimonios' },
   { href: '#nosotros', label: 'Nosotros' },
   { href: '#clientes', label: 'Clientes' },
+  { href: '#accesorios', label: 'Accesorios' },
   { href: '#modelos', label: 'Cotizador' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -79,6 +79,27 @@ const featuredProducts = [
         image: 'https://m.media-amazon.com/images/I/511uP1r-GrL._UF894,1000_QL80_.jpg',
         hint: 'swivel coupler',
         icon: Layers
+    },
+    {
+        name: 'Tirante tipo moño con rondana',
+        description: 'Moño para cimbra con rondana de neopreno, de acero de alto carbón (5.8 mm), carga de 1,350 kg y resistencia de 2,200 kg.',
+        image: 'https://placehold.co/600x400',
+        hint: 'formwork tie',
+        icon: Anchor
+    },
+    {
+        name: 'Tirante tipo moño',
+        description: 'Moño para cimbra de acero de alto carbón (5.8 mm), con capacidad de carga de 1,350 kg y resistencia máxima de 2,200 kg. COSTO POR ATADO.',
+        image: 'https://placehold.co/600x400',
+        hint: 'formwork anchor',
+        icon: Anchor
+    },
+    {
+        name: 'Banda de PVC negra ojillada',
+        description: 'Sello retenedor de agua de 25 ml. Cinta de PVC con bulbo central y laterales estriados para máxima adherencia.',
+        image: 'https://placehold.co/600x400',
+        hint: 'pvc waterstop',
+        icon: Waves
     }
 ];
 
@@ -288,43 +309,6 @@ export default function Home() {
                 </div>
             </div>
         </section>
-
-        <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
-            <div className="container mx-auto">
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <h2 className="text-3xl font-bold text-primary">Completa tu Equipo con Nuestros Accesorios</h2>
-                    <p className="text-muted-foreground mt-2">
-                        Asegura la máxima versatilidad y seguridad en tu obra con nuestras juntas de alta resistencia.
-                    </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    {featuredProducts.map((product, index) => (
-                        <Card key={index} className="overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                            <CardHeader className="p-0">
-                                <Image 
-                                    src={product.image}
-                                    alt={product.name}
-                                    width={600}
-                                    height={400}
-                                    className="object-cover aspect-[3/2] w-full"
-                                    data-ai-hint={product.hint}
-                                />
-                            </CardHeader>
-                            <CardContent className="p-6 flex flex-col flex-grow">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <product.icon className="w-6 h-6 text-primary" />
-                                    <h3 className="text-xl font-bold">{product.name}</h3>
-                                </div>
-                                <CardDescription className="mb-4 flex-grow">{product.description}</CardDescription>
-                                <Button onClick={() => setIsModalOpen(true)} className="w-full mt-auto">
-                                    Solicitar Cotización
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-        </section>
         
         <section id="galeria" className="py-16 md:py-24 px-4 bg-secondary/30">
           <div className="container mx-auto">
@@ -433,8 +417,6 @@ export default function Home() {
           </div>
         </section>
         
-        
-
         <section id="clientes" className="py-16 md:py-24 px-4">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -466,6 +448,43 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="accesorios" className="py-16 md:py-24 px-4 bg-secondary/30">
+            <div className="container mx-auto">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h2 className="text-3xl font-bold text-primary">Completa tu Equipo con Nuestros Accesorios</h2>
+                    <p className="text-muted-foreground mt-2">
+                        Asegura la máxima versatilidad y seguridad en tu obra con nuestras juntas de alta resistencia.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {featuredProducts.map((product, index) => (
+                        <Card key={index} className="overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                            <CardHeader className="p-0">
+                                <Image 
+                                    src={product.image}
+                                    alt={product.name}
+                                    width={600}
+                                    height={400}
+                                    className="object-cover aspect-[3/2] w-full"
+                                    data-ai-hint={product.hint}
+                                />
+                            </CardHeader>
+                            <CardContent className="p-6 flex flex-col flex-grow">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <product.icon className="w-6 h-6 text-primary" />
+                                    <h3 className="text-xl font-bold">{product.name}</h3>
+                                </div>
+                                <CardDescription className="mb-4 flex-grow">{product.description}</CardDescription>
+                                <Button onClick={() => setIsModalOpen(true)} className="w-full mt-auto">
+                                    Solicitar Cotización
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
+        
         <section id="modelos" className="py-16 md:py-24 px-4">
           <div className="container mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
