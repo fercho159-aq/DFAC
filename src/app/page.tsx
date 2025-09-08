@@ -272,8 +272,6 @@ export default function Home() {
            </div>
         </section>
         
-        <PuntalesDestacados />
-
         <section id="beneficios" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -314,8 +312,8 @@ export default function Home() {
                                 />
                             </CardHeader>
                             <CardContent className="p-4 md:p-6 flex flex-col flex-grow">
-                                <div className="flex items-start gap-2 md:gap-4 mb-3">
-                                    <product.icon className="w-6 h-6 md:w-8 md:h-8 text-primary mt-1 flex-shrink-0" />
+                                <div className="flex flex-col items-center sm:items-start sm:flex-row sm:gap-4 mb-3 text-center sm:text-left">
+                                    <product.icon className="w-8 h-8 text-primary mb-2 sm:mb-0 sm:mt-1 flex-shrink-0" />
                                     <h3 className="text-sm md:text-xl font-bold">{product.name}</h3>
                                 </div>
                                 <CardDescription className="mb-6 flex-grow hidden sm:block">{product.description}</CardDescription>
@@ -388,6 +386,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <PuntalesDestacados />
         
         <section id="nosotros" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -565,9 +565,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
-
-    
-
-    
