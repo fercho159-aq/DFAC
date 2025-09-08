@@ -298,7 +298,7 @@ export default function Home() {
                         Desde juntas de alta resistencia hasta vigas y moños, tenemos todo lo necesario para asegurar la máxima versatilidad y seguridad en tu obra.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
                     {featuredProducts.map((product, index) => (
                         <Card key={index} className="overflow-hidden bg-background shadow-md hover:shadow-primary/20 transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
                             <CardHeader className="p-0">
@@ -311,13 +311,13 @@ export default function Home() {
                                     data-ai-hint={product.hint}
                                 />
                             </CardHeader>
-                            <CardContent className="p-6 flex flex-col flex-grow">
-                                <div className="flex items-start gap-4 mb-3">
-                                    <product.icon className="w-8 h-8 text-primary mt-1 flex-shrink-0" />
-                                    <h3 className="text-xl font-bold">{product.name}</h3>
+                            <CardContent className="p-4 md:p-6 flex flex-col flex-grow">
+                                <div className="flex items-start gap-2 md:gap-4 mb-3">
+                                    <product.icon className="w-6 h-6 md:w-8 md:h-8 text-primary mt-1 flex-shrink-0" />
+                                    <h3 className="text-base md:text-xl font-bold">{product.name}</h3>
                                 </div>
-                                <CardDescription className="mb-6 flex-grow">{product.description}</CardDescription>
-                                <Button onClick={() => setIsModalOpen(true)} variant="outline" className="w-full mt-auto group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
+                                <CardDescription className="mb-6 flex-grow hidden sm:block">{product.description}</CardDescription>
+                                <Button onClick={() => setIsModalOpen(true)} variant="outline" size="sm" className="w-full mt-auto group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors text-xs md:text-sm">
                                     Solicitar Cotización
                                 </Button>
                             </CardContent>
@@ -565,5 +565,7 @@ export default function Home() {
     </div>
   );
 }
+
+    
 
     
