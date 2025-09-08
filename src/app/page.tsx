@@ -272,7 +272,9 @@ export default function Home() {
            </div>
         </section>
         
-        <section id="beneficios" className="py-16 md:py-24">
+        <PuntalesDestacados />
+
+        <section id="beneficios" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {keyFeatures.map((feature, index) => (
@@ -290,7 +292,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="accesorios" className="py-16 md:py-24 bg-card">
+        <section id="accesorios" className="py-16 md:py-24 bg-background">
             <div className="container mx-auto">
                 <div className="text-center max-w-3xl mx-auto mb-12">
                     <h2 className="text-3xl lg:text-4xl font-bold">Completa tu Equipo con Nuestros Accesorios</h2>
@@ -300,7 +302,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
                     {featuredProducts.map((product, index) => (
-                        <Card key={index} className="overflow-hidden bg-background shadow-md hover:shadow-primary/20 transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
+                        <Card key={index} className="overflow-hidden bg-card shadow-md hover:shadow-primary/20 transition-all duration-300 flex flex-col group transform hover:-translate-y-1">
                             <CardHeader className="p-0">
                                 <Image 
                                     src={product.image}
@@ -314,7 +316,7 @@ export default function Home() {
                             <CardContent className="p-4 md:p-6 flex flex-col flex-grow">
                                 <div className="flex items-start gap-2 md:gap-4 mb-3">
                                     <product.icon className="w-6 h-6 md:w-8 md:h-8 text-primary mt-1 flex-shrink-0" />
-                                    <h3 className="text-base md:text-xl font-bold">{product.name}</h3>
+                                    <h3 className="text-sm md:text-xl font-bold">{product.name}</h3>
                                 </div>
                                 <CardDescription className="mb-6 flex-grow hidden sm:block">{product.description}</CardDescription>
                                 <Button onClick={() => setIsModalOpen(true)} variant="outline" size="sm" className="w-full mt-auto group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors text-xs md:text-sm">
@@ -386,8 +388,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <PuntalesDestacados />
         
         <section id="nosotros" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -565,6 +565,8 @@ export default function Home() {
     </div>
   );
 }
+
+    
 
     
 
